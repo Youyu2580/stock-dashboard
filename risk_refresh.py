@@ -31,6 +31,9 @@ RISK_F = 'risk.json'
 DATA_F = 'data.json'
 KNOWN_F = 'known_anns.json'
 
+# ETF 底仓：无个股排雷项（商誉/解禁/质押/公告均不适用），跳过自动刷新
+ETF_SKIP = {'515180', '159307'}
+
 # 公告关键词桶（与 2026-10-31 人工核查用的口径一致）
 KW_BUCKETS = [('reduce', r'减持'), ('guar', r'担保'),
               ('litig', r'诉讼|仲裁'), ('freeze', r'冻结|司法拍卖|拍卖'),
@@ -177,6 +180,10 @@ def main():
     for code in codes:
         rec = risk.get(code)
         if not rec:
+            continue
+        if code in ETF_SKIP:
+            rec['level'] = 'ok'
+            rec['tags'] = []
             continue
         try:
             pl = refresh_pledge(code)
