@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>红利候选池</title>
+<style>
+:root{--bg:#0f1419;--card:#1a2129;--line:#2a3441;--text:#e6edf3;--muted:#8b98a5;--green:#3fb950;--yellow:#d29922;--red:#f85149;--blue:#58a6ff}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;padding:12px;padding-bottom:40px}
+header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+h1{font-size:18px;font-weight:600}
+#updated{font-size:12px;color:var(--muted)}
+.filters{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.filters button{background:var(--card);color:var(--text);border:1px solid var(--line);border-radius:16px;padding:6px 14px;font-size:13px;cursor:pointer}
+.filters button.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:10px}
+.row1{display:flex;justify-content:space-between;align-items:baseline}
+.name{font-size:16px;font-weight:600}
+.group{font-size:11px;color:var(--muted);margin-left:6px}
+.price{font-size:17px;font-weight:600;font-variant-numeric:tabular-nums}
+.row2{display:flex;gap:14px;margin-top:6px;font-size:13px;color:var(--muted);flex-wrap:wrap}
+.row2 b{color:var(--text);font-weight:600;font-variant-numeric:tabular-nums}
+.tag{display:inline-block;padding:1px 7px;border-radius:9px;font-size:11px;margin-left:4px}
+.t-green{background:rgba(63,185,80,.15);color:var(--green)}
+.t-yellow{background:rgba(210,153,34,.15);color:var(--yellow)}
+.t-red{background:rgba(248,81,73,.15);color:var(--red)}
+.bar{height:6px;background:var(--line);border-radius:3px;margin-top:8px;position:relative;overflow:hidden}
+.bar i{position:absolute;left:0;top:0;bottom:0;border-radius:3px}
+.fib{display:flex;gap:10px;margin-top:8px;font-size:12px;color:var(--muted);flex-wrap:wrap}
+.fib span{font-variant-numeric:tabular-nums}
+.note{font-size:11px;color:var(--muted);line-height:1.6;margin-top:18px}
+.empty{color:var(--muted);text-align:center;padding:30px}
+@media(min-width:700px){body{max-width:900px;margin:0 auto}}
+</style>
+</head>
+<body>
+<header>
+  <h1>红利候选池</h1>
+  <span id="updated">加载中…</span>
+</header>
+<div class="filters">
+  <button data-f="all" class="active">全部</button>
+  <button data-f="cheap">接近买点</button>
+  <button data-f="expensive">接近卖点</button>
+  <button data-f="highdy">高股息</button>
+</div>
+<div id="list"></div>
+<div class="note">
+  位置 = 当前价在近 60 个交易日高低区间中的百分位；越低越接近区间底部。<br>
+  斐波那契三档 = 近期低点 + 区间 × 0.382 / 0.5 / 0.618，可作网格挂单位。<br>
+  数据来自公开行情接口，仅供跟踪参考，不构成投资建议。
+</div>
+<script>
+let DATA = null, FILTER = 'all';
+const color = p => p == null ? 'var(--muted)' : p < 30 ? 'var(--green)' : p > 70 ? 'var(--red)' : 'var(--yellow)';
+const tagCls = p => p == null ? '' : p < 30 ? 't-green' : p > 70 ? 't-red' : 't-yellow';
+
+function fmt(n, d = 2) { return n == null ? '-' : Number(n).toFixed(d); }
+
+function render() {
+  const list = document.getElementById('list');
+  if (!DATA) { list.innerHTML = '<div class="empty">加载中…</div>'; return; }
+  let rows = DATA.stocks.slice();
+  if (FILTER === 'cheap') rows = rows.filter(r => r.pos60 != null && r.pos60 < 40);
+  if (FILTER === 'expensive') rows = rows.filter(r => r.pos60 != null && r.pos60 > 80);
+  if (FILTER === 'highdy') rows = rows.filter(r => r.dy != null && r.dy >= 5);
+  if (FILTER !== 'all') rows.sort((a, b) => (a.pos60 ?? 50) - (b.pos60 ?? 50));
+  else rows.sort((a, b) => (b.dy ?? 0) - (a.dy ?? 0));
+  if (!rows.length) { list.innerHTML = '<div class="empty">没有符合条件的股票</div>'; return; }
+  list.innerHTML = rows.map(r => {
+    const p = r.pos60;
+    const barW = p == null ? 0 : Math.max(2, Math.min(100, p));
+    const fib = r.f60 ? `<div class="fib"><span>网格：${fmt(r.f60.f382)} / ${fmt(r.f60.f500)} / ${fmt(r.f60.f618)}</span><span>区间 ${fmt(r.f60.lo)}–${fmt(r.f60.hi)}</span></div>` : '';
+    return `<div class="card">
+      <div class="row1">
+        <div><span class="name">${r.name}</span><span class="group">${r.group || ''}</span></div>
+        <div class="price">${fmt(r.price)}</div>
+      </div>
+      <div class="row2">
+        <span>股息率 <b>${r.dy == null ? '-' : r.dy + '%'}</b></span>
+        <span>日BOLL <b>${r.bollD}</b></span>
+        <span>周BOLL <b>${r.bollW}</b></span>
+        <span>60日位置 <b style="color:${color(p)}">${p == null ? '-' : p + '%'}</b><span class="tag ${tagCls(p)}">${p == null ? '' : p < 30 ? '偏低' : p > 70 ? '偏高' : '中间'}</span></span>
+      </div>
+      <div class="bar"><i style="width:${barW}%;background:${color(p)}"></i></div>
+      ${fib}
+    </div>`;
+  }).join('');
+}
+
+function load() {
+  fetch('data.json?t=' + Date.now()).then(r => r.json()).then(d => {
+    DATA = d;
+    document.getElementById('updated').textContent = '更新于 ' + d.updated;
+    render();
+  }).catch(e => {
+    document.getElementById('updated').textContent = '加载失败：' + e;
+  });
+}
+
+document.querySelectorAll('.filters button').forEach(b => {
+  b.onclick = () => {
+    document.querySelectorAll('.filters button').forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    FILTER = b.dataset.f;
+    render();
+  };
+});
+load();
+setInterval(load, 5 * 60 * 1000);
+</script>
+</body>
+</html>
