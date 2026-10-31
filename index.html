@@ -21,15 +21,39 @@ h1{font-size:18px;font-weight:600}
 .price{font-size:17px;font-weight:600;font-variant-numeric:tabular-nums}
 .row2{display:flex;gap:14px;margin-top:6px;font-size:13px;color:var(--muted);flex-wrap:wrap}
 .row2 b{color:var(--text);font-weight:600;font-variant-numeric:tabular-nums}
+.row3{display:flex;gap:6px;margin-top:7px;flex-wrap:wrap;align-items:center}
 .tag{display:inline-block;padding:1px 7px;border-radius:9px;font-size:11px;margin-left:4px}
 .t-green{background:rgba(63,185,80,.15);color:var(--green)}
 .t-yellow{background:rgba(210,153,34,.15);color:var(--yellow)}
 .t-red{background:rgba(248,81,73,.15);color:var(--red)}
+.t-blue{background:rgba(88,166,255,.15);color:var(--blue)}
+.t-gray{background:rgba(139,152,165,.15);color:var(--muted)}
+.drv{display:inline-block;padding:2px 8px;border-radius:9px;font-size:11px;border:1px solid transparent}
+.drv-price{background:rgba(210,153,34,.13);color:var(--yellow);border-color:rgba(210,153,34,.35)}
+.drv-order{background:rgba(88,166,255,.13);color:var(--blue);border-color:rgba(88,166,255,.35)}
+.drv-note{color:var(--muted);font-size:11px;margin-left:2px}
+.vf{display:inline-flex;align-items:center;gap:3px;padding:2px 7px;border-radius:9px;font-size:11px}
+.vf-ok{background:rgba(63,185,80,.10);color:var(--green)}
+.vf-no{background:rgba(139,152,165,.13);color:var(--muted)}
+.rk{display:inline-flex;align-items:center;gap:3px;padding:2px 7px;border-radius:9px;font-size:11px;cursor:help}
+.rk-ok{background:rgba(63,185,80,.10);color:var(--green)}
+.rk-warn{background:rgba(210,153,34,.13);color:var(--yellow)}
+.rk-red{background:rgba(248,81,73,.14);color:var(--red)}
+.rk-detail{font-size:11px;color:var(--muted);margin-top:6px;line-height:1.6;display:none}
+.card.open .rk-detail{display:block}
+.rk-detail .rk-blk{margin-bottom:7px}
+.rk-detail .rk-blk b{color:var(--text)}
+.rk-detail .rk-lv{display:inline-block;min-width:14px}
+.rk-sub{display:inline-flex;align-items:center;gap:2px;padding:1px 6px;border-radius:8px;font-size:10px;margin-left:3px}
+.rk-detail .rk-hit{color:var(--yellow)}
+.rk-detail .rk-bad{color:var(--red)}
 .bar{height:6px;background:var(--line);border-radius:3px;margin-top:8px;position:relative;overflow:hidden}
 .bar i{position:absolute;left:0;top:0;bottom:0;border-radius:3px}
 .fib{display:flex;gap:10px;margin-top:8px;font-size:12px;color:var(--muted);flex-wrap:wrap}
 .fib span{font-variant-numeric:tabular-nums}
-.note{font-size:11px;color:var(--muted);line-height:1.6;margin-top:18px}
+.note{font-size:11px;color:var(--muted);line-height:1.7;margin-top:18px}
+.note b{color:var(--text)}
+.warn{margin-top:14px;padding:10px 12px;border-radius:10px;border:1px solid rgba(248,81,73,.35);background:rgba(248,81,73,.07);color:#ffb3ae;font-size:12px;line-height:1.7}
 .empty{color:var(--muted);text-align:center;padding:30px}
 @media(min-width:700px){body{max-width:900px;margin:0 auto}}
 </style>
@@ -49,14 +73,80 @@ h1{font-size:18px;font-weight:600}
 <div class="note">
   位置 = 当前价在近 60 个交易日高低区间中的百分位；越低越接近区间底部。<br>
   斐波那契三档 = 近期低点 + 区间 × 0.382 / 0.5 / 0.618，可作网格挂单位。<br>
+  <b>驱动 = 利润来源：</b>「订单驱动」利润由订单量/销量/份额决定；「价差驱动」利润由产品价差、净息差、运价决定（右侧小字为具体驱动因子）。<br>
+  <b>价差 ≠ 必剔</b>——价差只标识利润来源，不等于要卖。真正要警惕的是<b>商品价差</b>（煤价/油价/运价/铝价），因为它的高股息建立在周期高位利润上。<br>
+  <b>已核实</b> = 代码、名称、现价、股息率经三源交叉核对（东财分红表 + 腾讯行情 + 独立复算）；<b>未核实</b> = 尚未核对，不可据此决策。<br>
+  <b>排雷 = 七类实查（点徽章展开全部依据）：</b>①商誉占净资产比 ②未来12月解禁 ③近12月减持公告 ④近12月问询/监管/处罚 ⑤<b>股权质押比例（中登全公司股东合计，每周五更新）</b> ⑥<b>对外担保（近12月公告，区分「对并表子公司」与「对参股/非并表主体」）</b> ⑦<b>诉讼仲裁 + 股份冻结</b>。<br>
+  <b>🔴有雷</b>＝已发生实质损害；<b>🟡关注</b>＝需知悉但不构成否决；<b>✅通过</b>＝七类均未发现。<br>
   数据来自公开行情接口，仅供跟踪参考，不构成投资建议。
 </div>
+<div class="warn">
+  ⚠️ 七类排雷已实查完毕（2026-10-31）· 仍未过三道总闸门 · 仍不可直接下单
+</div>
 <script>
-let DATA = null, FILTER = 'all';
+let DATA = null, RISK = {}, FILTER = 'all';
 const color = p => p == null ? 'var(--muted)' : p < 30 ? 'var(--green)' : p > 70 ? 'var(--red)' : 'var(--yellow)';
 const tagCls = p => p == null ? '' : p < 30 ? 't-green' : p > 70 ? 't-red' : 't-yellow';
 
 function fmt(n, d = 2) { return n == null ? '-' : Number(n).toFixed(d); }
+
+// 驱动标签：价差=黄（含商品价差/净息差/运价），订单=蓝
+function driverTag(r) {
+  const d = r.driver;
+  if (!d) return '<span class="drv drv-note">未标注驱动</span>';
+  const cls = d === '价差' ? 'drv-price' : 'drv-order';
+  const note = r.driverNote ? `<span class="drv-note">${r.driverNote}</span>` : '';
+  return `<span class="drv ${cls}">${d}驱动</span>${note}`;
+}
+
+// 核实徽章：已核实/未核实
+function verifyTag(r) {
+  const ok = r.verified === '已核实';
+  return `<span class="vf ${ok ? 'vf-ok' : 'vf-no'}">${ok ? '✓ 已核实' : '? 未核实'}</span>`;
+}
+
+// 排雷徽章：七类（商誉/解禁/减持/问询 + 质押/担保/诉讼）实查，点开看依据
+const lvIcon = lv => lv === 'red' ? '🔴' : lv === 'warn' ? '🟡' : lv === 'ok' ? '✅' : '—';
+const lvCls = lv => lv === 'red' ? 'rk-red' : lv === 'warn' ? 'rk-warn' : 'rk-ok';
+
+function riskTag(r) {
+  const k = RISK[r.code];
+  if (!k) return `<span class="rk rk-ok">✅ 排雷通过</span>`;
+  const lv = k.level || 'ok';
+  const label = lv === 'red' ? '🔴 有雷' : lv === 'warn' ? '🟡 关注' : '✅ 排雷通过';
+  const cnt = (k.tags || []).length;
+  let subs = '';
+  const pl = k.pledge || {}, gu = k.guar || {}, li = k.litig || {}, fz = k.freeze || {};
+  if (pl.ratio != null && pl.level !== 'ok')
+    subs += `<span class="rk-sub ${lvCls(pl.level)}">质押${pl.ratio}%</span>`;
+  if (gu.level && gu.level !== 'ok') subs += `<span class="rk-sub ${lvCls(gu.level)}">担保${gu.n}</span>`;
+  if (li.level && li.level !== 'ok') subs += `<span class="rk-sub ${lvCls(li.level)}">诉讼${li.n}</span>`;
+  if (fz.level === 'red') subs += `<span class="rk-sub rk-red">冻结</span>`;
+  return `<span class="rk ${lvCls(lv)}" data-toggle="1">${label}${cnt ? ' · ' + cnt + '项' : ''}</span>${subs}`;
+}
+
+function riskDetail(r) {
+  const k = RISK[r.code];
+  if (!k) return '';
+  const pl = k.pledge || {}, gu = k.guar || {}, li = k.litig || {}, fz = k.freeze || {}, bs = k.base || {};
+  const row = (t, lv, txt) => txt
+    ? `<div class="rk-blk"><span class="rk-lv">${lvIcon(lv)}</span><b>${t}</b>：${txt}</div>` : '';
+  let h = '<div class="rk-detail">';
+  h += row('股权质押', pl.level,
+    pl.ratio != null
+      ? `${pl.level === 'ok' ? '' : '<b class="rk-hit">'}占公司总股本 ${pl.ratio}%（${pl.date}，质押市值 ${pl.cap} 亿）${pl.level === 'ok' ? '' : '</b>'}` +
+        (pl.note ? '<br>' + pl.note : '')
+      : '未取到中登质押记录');
+  h += row('对外担保', gu.level, gu.note || '—');
+  h += row('诉讼仲裁', li.level, li.note || '—');
+  h += row('股份冻结', fz.level, fz.note || '—');
+  h += row('商誉/解禁/减持/问询', bs.level,
+    bs.note || '四类均未发现（商誉占净资产<3%、无未来12月解禁、无减持公告、无问询/处罚）');
+  h += '<div class="rk-blk" style="opacity:.75">质押＝中登全公司股东合计口径，每周五更新；担保＝近12月公告正文；'
+     + '未覆盖：质押平仓线、表外负债、口头问询。</div>';
+  h += '</div>';
+  return h;
+}
 
 function render() {
   const list = document.getElementById('list');
@@ -83,8 +173,14 @@ function render() {
         <span>周BOLL <b>${r.bollW}</b></span>
         <span>60日位置 <b style="color:${color(p)}">${p == null ? '-' : p + '%'}</b><span class="tag ${tagCls(p)}">${p == null ? '' : p < 30 ? '偏低' : p > 70 ? '偏高' : '中间'}</span></span>
       </div>
+      <div class="row3">
+        ${driverTag(r)}
+        ${verifyTag(r)}
+        ${riskTag(r)}
+      </div>
       <div class="bar"><i style="width:${barW}%;background:${color(p)}"></i></div>
       ${fib}
+      ${riskDetail(r)}
     </div>`;
   }).join('');
 }
@@ -93,11 +189,24 @@ function load() {
   fetch('data.json?t=' + Date.now()).then(r => r.json()).then(d => {
     DATA = d;
     document.getElementById('updated').textContent = '更新于 ' + d.updated;
+    return fetch('risk.json?t=' + Date.now())
+      .then(r => (r.ok ? r.json() : {}))
+      .catch(() => ({}));
+  }).then(rk => {
+    RISK = rk || {};
     render();
   }).catch(e => {
     document.getElementById('updated').textContent = '加载失败：' + e;
   });
 }
+
+// 点排雷徽章展开详情
+document.getElementById('list').addEventListener('click', e => {
+  const t = e.target.closest('.rk, .rk-sub');
+  if (!t) return;
+  const card = t.closest('.card');
+  if (card) card.classList.toggle('open');
+});
 
 document.querySelectorAll('.filters button').forEach(b => {
   b.onclick = () => {
