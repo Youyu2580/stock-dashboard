@@ -81,7 +81,7 @@ h1{font-size:18px;font-weight:600}
   数据来自公开行情接口，仅供跟踪参考，不构成投资建议。
 </div>
 <div class="warn">
-  ⚠️ 七类排雷已实查完毕（2026-10-31）· 仍未过三道总闸门 · 仍不可直接下单
+  ⚠️ 质押/商誉/解禁每天自动刷新 · 担保/诉讼/冻结/问询为 2026-10-31 人工核查基线，新公告自动提示待核 · 仍未过三道总闸门 · 仍不可直接下单
 </div>
 <script>
 let DATA = null, RISK = {}, FILTER = 'all';
@@ -117,11 +117,15 @@ function riskTag(r) {
   const cnt = (k.tags || []).length;
   let subs = '';
   const pl = k.pledge || {}, gu = k.guar || {}, li = k.litig || {}, fz = k.freeze || {};
+  const gd = k.goodwill || {}, lf = k.lift || {}, pd = k.pending || {};
   if (pl.ratio != null && pl.level !== 'ok')
     subs += `<span class="rk-sub ${lvCls(pl.level)}">质押${pl.ratio}%</span>`;
+  if (gd.level === 'warn') subs += `<span class="rk-sub rk-warn">商誉${gd.ratio}%</span>`;
+  if (lf.level === 'warn') subs += `<span class="rk-sub rk-warn">解禁${(lf.next || '').slice(0, 7)}</span>`;
   if (gu.level && gu.level !== 'ok') subs += `<span class="rk-sub ${lvCls(gu.level)}">担保${gu.n}</span>`;
   if (li.level && li.level !== 'ok') subs += `<span class="rk-sub ${lvCls(li.level)}">诉讼${li.n}</span>`;
   if (fz.level === 'red') subs += `<span class="rk-sub rk-red">冻结</span>`;
+  if (pd.n) subs += `<span class="rk-sub rk-warn">🔔${pd.n}待核</span>`;
   return `<span class="rk ${lvCls(lv)}" data-toggle="1">${label}${cnt ? ' · ' + cnt + '项' : ''}</span>${subs}`;
 }
 
@@ -129,20 +133,33 @@ function riskDetail(r) {
   const k = RISK[r.code];
   if (!k) return '';
   const pl = k.pledge || {}, gu = k.guar || {}, li = k.litig || {}, fz = k.freeze || {}, bs = k.base || {};
+  const gd = k.goodwill || {}, lf = k.lift || {}, pd = k.pending || {};
   const row = (t, lv, txt) => txt
     ? `<div class="rk-blk"><span class="rk-lv">${lvIcon(lv)}</span><b>${t}</b>：${txt}</div>` : '';
   let h = '<div class="rk-detail">';
-  h += row('股权质押', pl.level,
+  h += row('股权质押 ⟳', pl.level,
     pl.ratio != null
-      ? `${pl.level === 'ok' ? '' : '<b class="rk-hit">'}占公司总股本 ${pl.ratio}%（${pl.date}，质押市值 ${pl.cap} 亿）${pl.level === 'ok' ? '' : '</b>'}` +
-        (pl.note ? '<br>' + pl.note : '')
+      ? `占公司总股本 ${pl.ratio}%（${pl.date}，质押市值 ${pl.cap} 亿）` +
+        (pl.note && pl.level !== 'ok' ? '<br>' + pl.note : '')
       : '未取到中登质押记录');
+  h += row('商誉 ⟳', gd.level,
+    gd.ratio != null
+      ? `${gd.yi} 亿，占净资产 ${gd.ratio}%（${gd.date} 报表）` +
+        (gd.level === 'warn' ? ' <b class="rk-hit">≥5% 预警</b>' : '')
+      : gd.note || '未取到（保险/券商口径）');
+  h += row('未来12月解禁 ⟳', lf.level, lf.note || '—');
   h += row('对外担保', gu.level, gu.note || '—');
   h += row('诉讼仲裁', li.level, li.note || '—');
   h += row('股份冻结', fz.level, fz.note || '—');
-  h += row('商誉/解禁/减持/问询', bs.level,
-    bs.note || '四类均未发现（商誉占净资产<3%、无未来12月解禁、无减持公告、无问询/处罚）');
-  h += '<div class="rk-blk" style="opacity:.75">质押＝中登全公司股东合计口径，每周五更新；担保＝近12月公告正文；'
+  if (pd.n) {
+    const items = (pd.items || []).map(it =>
+      `<div style="margin:3px 0">· <span style="opacity:.6">${it.date}</span> ${it.title}</div>`).join('');
+    h += `<div class="rk-blk"><span class="rk-lv">🔔</span><b>新增公告待核 ${pd.n} 条</b>（机器按关键词扫出，未人工核实）${items}</div>`;
+  }
+  if (bs.note)
+    h += row('人工核查备注', bs.level, bs.note);
+  h += '<div class="rk-blk" style="opacity:.75">⟳＝每天自动刷新（中登质押 / 最新财报商誉 / 未来12月解禁）；'
+     + '担保·诉讼·冻结·备注＝2026-10-31 人工核查基线；🔔＝公告关键词机器扫描，待人工定性。'
      + '未覆盖：质押平仓线、表外负债、口头问询。</div>';
   h += '</div>';
   return h;

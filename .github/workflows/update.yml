@@ -22,10 +22,13 @@ jobs:
       - name: Fetch market data
         run: python update.py
 
-      - name: Commit data.json
+      - name: Refresh risk data (pledge / goodwill / lift auto, announcements pending)
+        run: python risk_refresh.py
+
+      - name: Commit data.json & risk.json
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data.json
-          git diff --staged --quiet || git commit -m "chore: update data"
+          git add data.json risk.json
+          git diff --staged --quiet || git commit -m "chore: update data & risk"
           git push

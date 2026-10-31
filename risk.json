@@ -6,7 +6,8 @@
    "date": "2026-10-30",
    "cap": 27.78,
    "shares": 31743.68,
-   "note": "质押 0.12%，低于 5% 阈值"
+   "src": "auto",
+   "note": "质押 0.12%"
   },
   "guar": {
    "level": "ok",
@@ -29,7 +30,28 @@
   },
   "note": "",
   "level": "ok",
-  "tags": []
+  "tags": [],
+  "goodwill": {
+   "ratio": null,
+   "level": "na",
+   "date": "2026-09-30",
+   "yi": 0.0,
+   "src": "auto",
+   "note": "最新报表无商誉项（通常为0）"
+  },
+  "lift": {
+   "n": 0,
+   "ratio": 0.0,
+   "level": "ok",
+   "next": null,
+   "src": "auto",
+   "note": "未来12个月无解禁"
+  },
+  "pending": {
+   "n": 0,
+   "items": [],
+   "src": "auto"
+  }
  },
  "601939": {
   "pledge": {
@@ -38,7 +60,8 @@
    "date": "2026-10-30",
    "cap": 24.38,
    "shares": 20350.38,
-   "note": "质押 0.96%，低于 5% 阈值"
+   "src": "auto",
+   "note": "质押 0.96%"
   },
   "guar": {
    "level": "ok",
@@ -61,7 +84,28 @@
   },
   "note": "",
   "level": "ok",
-  "tags": []
+  "tags": [],
+  "goodwill": {
+   "ratio": 0.06,
+   "level": "ok",
+   "date": "2026-09-30",
+   "yi": 23.04,
+   "src": "auto",
+   "note": "商誉 23.04 亿，占净资产 0.06%"
+  },
+  "lift": {
+   "n": 0,
+   "ratio": 0.0,
+   "level": "ok",
+   "next": null,
+   "src": "auto",
+   "note": "未来12个月无解禁"
+  },
+  "pending": {
+   "n": 0,
+   "items": [],
+   "src": "auto"
+  }
  },
  "601288": {
   "pledge": {
@@ -70,7 +114,8 @@
    "date": "2026-10-30",
    "cap": 5.42,
    "shares": 7245.66,
-   "note": "质押 0.02%，低于 5% 阈值"
+   "src": "auto",
+   "note": "质押 0.02%"
   },
   "guar": {
    "level": "ok",
@@ -93,7 +138,28 @@
   },
   "note": "",
   "level": "ok",
-  "tags": []
+  "tags": [],
+  "goodwill": {
+   "ratio": 0.32,
+   "level": "ok",
+   "date": "2026-09-30",
+   "yi": 109.21,
+   "src": "auto",
+   "note": "商誉 109.21 亿，占净资产 0.32%"
+  },
+  "lift": {
+   "n": 0,
+   "ratio": 0.0,
+   "level": "ok",
+   "next": null,
+   "src": "auto",
+   "note": "未来12个月无解禁"
+  },
+  "pending": {
+   "n": 0,
+   "items": [],
+   "src": "auto"
+  }
  },
  "601988": {
   "pledge": {
@@ -102,7 +168,8 @@
    "date": "2026-10-30",
    "cap": 3.18,
    "shares": 4481.49,
-   "note": "质押 0.02%，低于 5% 阈值"
+   "src": "auto",
+   "note": "质押 0.02%"
   },
   "guar": {
    "level": "ok",
@@ -125,7 +192,28 @@
   },
   "note": "",
   "level": "ok",
-  "tags": []
+  "tags": [],
+  "goodwill": {
+   "ratio": 0.08,
+   "level": "ok",
+   "date": "2026-09-30",
+   "yi": 26.54,
+   "src": "auto",
+   "note": "商誉 26.54 亿，占净资产 0.08%"
+  },
+  "lift": {
+   "n": 0,
+   "ratio": 0.0,
+   "level": "ok",
+   "next": null,
+   "src": "auto",
+   "note": "未来12个月无解禁"
+  },
+  "pending": {
+   "n": 0,
+   "items": [],
+   "src": "auto"
+  }
  },
  "600036": {
   "pledge": {
@@ -134,7 +222,8 @@
    "date": "2026-10-30",
    "cap": 30.95,
    "shares": 7107.7,
-   "note": "质押 0.34%，低于 5% 阈值"
+   "src": "auto",
+   "note": "质押 0.34%"
   },
   "guar": {
    "level": "ok",
@@ -157,7 +246,28 @@
   },
   "note": "",
   "level": "ok",
-  "tags": []
+  "tags": [],
+  "goodwill": {
+   "ratio": 0.72,
+   "level": "ok",
+   "date": "2026-09-30",
+   "yi": 99.54,
+   "src": "auto",
+   "note": "商誉 99.54 亿，占净资产 0.72%"
+  },
+  "lift": {
+   "n": 0,
+   "ratio": 0.0,
+   "level": "ok",
+   "next": null,
+   "src": "auto",
+   "note": "未来12个月无解禁"
+  },
+  "pending": {
+   "n": 0,
+   "items": [],
+   "src": "auto"
+  }
  },
  "601166": {
   "pledge": {
@@ -166,7 +276,8 @@
    "date": "2026-10-30",
    "cap": 21.28,
    "shares": 10831.91,
-   "note": "质押 0.51%，低于 5% 阈值"
+   "src": "auto",
+   "note": "质押 0.51%"
   },
   "guar": {
    "level": "ok",
@@ -189,7 +300,28 @@
   },
   "note": "",
   "level": "ok",
-  "tags": []
+  "tags": [],
+  "goodwill": {
+   "ratio": 0.05,
+   "level": "ok",
+   "date": "2026-09-30",
+   "yi": 5.32,
+   "src": "auto",
+   "note": "商誉 5.32 亿，占净资产 0.05%"
+  },
+  "lift": {
+   "n": 0,
+   "ratio": 0.0,
+   "level": "ok",
+   "next": null,
+   "src": "auto",
+   "note": "未来12个月无解禁"
+  },
+  "pending": {
+   "n": 0,
+   "items": [],
+   "src": "auto"
+  }
  },
  "601998": {
   "pledge": {
@@ -198,7 +330,8 @@
    "date": "2026-10-30",
    "cap": 5.57,
    "shares": 5888.51,
-   "note": "质押 0.14%，低于 5% 阈值"
+   "src": "auto",
+   "note": "质押 0.14%"
   },
   "guar": {
    "level": "ok",
@@ -221,7 +354,28 @@
   },
   "note": "",
   "level": "ok",
-  "tags": []
+  "tags": [],
+  "goodwill": {
+   "ratio": 0.1,
+   "level": "ok",
+   "date": "2026-09-30",
+   "yi": 8.72,
+   "src": "auto",
+   "note": "商誉 8.72 亿，占净资产 0.10%"
+  },
+  "lift": {
+   "n": 0,
+   "ratio": 0.0,
+   "level": "ok",
+   "next": null,
+   "src": "auto",
+   "note": "未来12个月无解禁"
+  },
+  "pending": {
+   "n": 0,
+   "items": [],
+   "src": "auto"
+  }
  },
  "601229": {
   "pledge": {
@@ -230,7 +384,8 @@
    "date": "2026-10-30",
    "cap": 18.03,
    "shares": 19365.54,
-   "note": "质押 1.35%，低于 5% 阈值"
+   "src": "auto",
+   "note": "质押 1.35%"
   },
   "guar": {
    "level": "ok",
@@ -255,7 +410,28 @@
   "level": "red",
   "tags": [
    "诉讼"
-  ]
+  ],
+  "goodwill": {
+   "ratio": null,
+   "level": "na",
+   "date": "2026-09-30",
+   "yi": 0.0,
+   "src": "auto",
+   "note": "最新报表无商誉项（通常为0）"
+  },
+  "lift": {
+   "n": 0,
+   "ratio": 0.0,
+   "level": "ok",
+   "next": null,
+   "src": "auto",
+   "note": "未来12个月无解禁"
+  },
+  "pending": {
+   "n": 0,
+   "items": [],
+   "src": "auto"
+  }
  },
  "601088": {
   "pledge": {
@@ -264,7 +440,8 @@
    "date": "2026-10-30",
    "cap": 13.69,
    "shares": 2633.59,
-   "note": "质押 0.14%，低于 5% 阈值"
+   "src": "auto",
+   "note": "质押 0.14%"
   },
   "guar": {
    "level": "ok",
@@ -287,7 +464,28 @@
   },
   "note": "",
   "level": "ok",
-  "tags": []
+  "tags": [],
+  "goodwill": {
+   "ratio": null,
+   "level": "na",
+   "date": "2026-09-30",
+   "yi": 0.0,
+   "src": "auto",
+   "note": "最新报表无商誉项（通常为0）"
+  },
+  "lift": {
+   "n": 0,
+   "ratio": 0.0,
+   "level": "ok",
+   "next": null,
+   "src": "auto",
+   "note": "未来12个月无解禁"
+  },
+  "pending": {
+   "n": 0,
+   "items": [],
+   "src": "auto"
+  }
  },
  "601225": {
   "pledge": {
@@ -296,7 +494,8 @@
    "date": "2026-10-30",
    "cap": 10.22,
    "shares": 3639.88,
-   "note": "质押 0.38%，低于 5% 阈值"
+   "src": "auto",
+   "note": "质押 0.38%"
   },
   "guar": {
    "level": "ok",
@@ -319,7 +518,28 @@
   },
   "note": "",
   "level": "ok",
-  "tags": []
+  "tags": [],
+  "goodwill": {
+   "ratio": 0.03,
+   "level": "ok",
+   "date": "2026-09-30",
+   "yi": 0.41,
+   "src": "auto",
+   "note": "商誉 0.41 亿，占净资产 0.03%"
+  },
+  "lift": {
+   "n": 0,
+   "ratio": 0.0,
+   "level": "ok",
+   "next": null,
+   "src": "auto",
+   "note": "未来12个月无解禁"
+  },
+  "pending": {
+   "n": 0,
+   "items": [],
+   "src": "auto"
+  }
  },
  "601857": {
   "pledge": {
@@ -328,7 +548,8 @@
    "date": "2026-10-30",
    "cap": 6.68,
    "shares": 4823.53,
-   "note": "质押 0.03%，低于 5% 阈值"
+   "src": "auto",
+   "note": "质押 0.03%"
   },
   "guar": {
    "level": "ok",
@@ -351,7 +572,28 @@
   },
   "note": "",
   "level": "ok",
-  "tags": []
+  "tags": [],
+  "goodwill": {
+   "ratio": 0.38,
+   "level": "ok",
+   "date": "2026-09-30",
+   "yi": 69.63,
+   "src": "auto",
+   "note": "商誉 69.63 亿，占净资产 0.38%"
+  },
+  "lift": {
+   "n": 0,
+   "ratio": 0.0,
+   "level": "ok",
+   "next": null,
+   "src": "auto",
+   "note": "未来12个月无解禁"
+  },
+  "pending": {
+   "n": 0,
+   "items": [],
+   "src": "auto"
+  }
  },
  "600028": {
   "pledge": {
@@ -360,7 +602,8 @@
    "date": "2026-10-30",
    "cap": 4.58,
    "shares": 7762.51,
-   "note": "质押 0.08%，低于 5% 阈值"
+   "src": "auto",
+   "note": "质押 0.08%"
   },
   "guar": {
    "level": "warn",
@@ -385,7 +628,29 @@
   "level": "warn",
   "tags": [
    "担保"
-  ]
+  ],
+  "goodwill": {
+   "ratio": 0.54,
+   "level": "ok",
+   "date": "2026-09-30",
+   "yi": 54.46,
+   "src": "auto",
+   "note": "商誉 54.46 亿，占净资产 0.54%"
+  },
+  "lift": {
+   "n": 1,
+   "ratio": 0.02,
+   "cap": 0.01,
+   "level": "ok",
+   "next": "2027-03-18",
+   "src": "auto",
+   "note": "未来12个月解禁 1 笔，占总股本 0.02%，市值 0.01 亿，最近 2027-03-18"
+  },
+  "pending": {
+   "n": 0,
+   "items": [],
+   "src": "auto"
+  }
  },
  "600938": {
   "pledge": {
@@ -394,7 +659,8 @@
    "date": "2026-10-30",
    "cap": 7.94,
    "shares": 2208.71,
-   "note": "质押 0.74%，低于 5% 阈值"
+   "src": "auto",
+   "note": "质押 0.74%"
   },
   "guar": {
    "level": "ok",
@@ -417,7 +683,28 @@
   },
   "note": "",
   "level": "ok",
-  "tags": []
+  "tags": [],
+  "goodwill": {
+   "ratio": 1.69,
+   "level": "ok",
+   "date": "2026-09-30",
+   "yi": 143.22,
+   "src": "auto",
+   "note": "商誉 143.22 亿，占净资产 1.69%"
+  },
+  "lift": {
+   "n": 0,
+   "ratio": 0.0,
+   "level": "ok",
+   "next": null,
+   "src": "auto",
+   "note": "未来12个月无解禁"
+  },
+  "pending": {
+   "n": 0,
+   "items": [],
+   "src": "auto"
+  }
  },
  "601919": {
   "pledge": {
@@ -426,7 +713,8 @@
    "date": "2026-10-30",
    "cap": 7.46,
    "shares": 4183.7,
-   "note": "质押 0.33%，低于 5% 阈值"
+   "src": "auto",
+   "note": "质押 0.33%"
   },
   "guar": {
    "level": "ok",
@@ -449,16 +737,38 @@
   },
   "note": "",
   "level": "ok",
-  "tags": []
+  "tags": [],
+  "goodwill": {
+   "ratio": 2.06,
+   "level": "ok",
+   "date": "2026-09-30",
+   "yi": 60.71,
+   "src": "auto",
+   "note": "商誉 60.71 亿，占净资产 2.06%"
+  },
+  "lift": {
+   "n": 0,
+   "ratio": 0.0,
+   "level": "ok",
+   "next": null,
+   "src": "auto",
+   "note": "未来12个月无解禁"
+  },
+  "pending": {
+   "n": 0,
+   "items": [],
+   "src": "auto"
+  }
  },
  "601600": {
   "pledge": {
-   "ratio": 0,
+   "ratio": 0.0,
    "level": "ok",
    "date": "2020-09-18",
    "cap": 0.0,
    "shares": 2.14,
-   "note": "质押 0.00%，低于 5% 阈值"
+   "src": "auto",
+   "note": "质押 0.00%"
   },
   "guar": {
    "level": "ok",
@@ -481,7 +791,29 @@
   },
   "note": "近12月4条减持公告（董事/高管减持计划及结果）",
   "level": "warn",
-  "tags": []
+  "tags": [],
+  "goodwill": {
+   "ratio": 2.44,
+   "level": "ok",
+   "date": "2026-09-30",
+   "yi": 34.95,
+   "src": "auto",
+   "note": "商誉 34.95 亿，占净资产 2.44%"
+  },
+  "lift": {
+   "n": 1,
+   "ratio": 0.0,
+   "cap": 0.0,
+   "level": "ok",
+   "next": "2026-12-23",
+   "src": "auto",
+   "note": "未来12个月解禁 1 笔，占总股本 0.00%，市值 0.00 亿，最近 2026-12-23"
+  },
+  "pending": {
+   "n": 0,
+   "items": [],
+   "src": "auto"
+  }
  },
  "000807": {
   "pledge": {
@@ -490,7 +822,8 @@
    "date": "2026-10-30",
    "cap": 0.63,
    "shares": 250,
-   "note": "质押 0.07%，低于 5% 阈值"
+   "src": "auto",
+   "note": "质押 0.07%"
   },
   "guar": {
    "level": "ok",
@@ -513,7 +846,28 @@
   },
   "note": "",
   "level": "ok",
-  "tags": []
+  "tags": [],
+  "goodwill": {
+   "ratio": null,
+   "level": "na",
+   "date": "2026-09-30",
+   "yi": 0.0,
+   "src": "auto",
+   "note": "最新报表无商誉项（通常为0）"
+  },
+  "lift": {
+   "n": 0,
+   "ratio": 0.0,
+   "level": "ok",
+   "next": null,
+   "src": "auto",
+   "note": "未来12个月无解禁"
+  },
+  "pending": {
+   "n": 0,
+   "items": [],
+   "src": "auto"
+  }
  },
  "601899": {
   "pledge": {
@@ -522,7 +876,8 @@
    "date": "2026-10-30",
    "cap": 3.48,
    "shares": 1260.12,
-   "note": "质押 0.06%，低于 5% 阈值"
+   "src": "auto",
+   "note": "质押 0.06%"
   },
   "guar": {
    "level": "warn",
@@ -547,7 +902,28 @@
   "level": "warn",
   "tags": [
    "担保"
-  ]
+  ],
+  "goodwill": {
+   "ratio": 0.24,
+   "level": "ok",
+   "date": "2026-09-30",
+   "yi": 6.77,
+   "src": "auto",
+   "note": "商誉 6.77 亿，占净资产 0.24%"
+  },
+  "lift": {
+   "n": 0,
+   "ratio": 0.0,
+   "level": "ok",
+   "next": null,
+   "src": "auto",
+   "note": "未来12个月无解禁"
+  },
+  "pending": {
+   "n": 0,
+   "items": [],
+   "src": "auto"
+  }
  },
  "600900": {
   "pledge": {
@@ -556,7 +932,8 @@
    "date": "2026-10-30",
    "cap": 123.24,
    "shares": 41438.23,
-   "note": "质押 1.69%，低于 5% 阈值"
+   "src": "auto",
+   "note": "质押 1.69%"
   },
   "guar": {
    "level": "ok",
@@ -579,7 +956,28 @@
   },
   "note": "",
   "level": "ok",
-  "tags": []
+  "tags": [],
+  "goodwill": {
+   "ratio": 0.45,
+   "level": "ok",
+   "date": "2026-09-30",
+   "yi": 10.73,
+   "src": "auto",
+   "note": "商誉 10.73 亿，占净资产 0.45%"
+  },
+  "lift": {
+   "n": 0,
+   "ratio": 0.0,
+   "level": "ok",
+   "next": null,
+   "src": "auto",
+   "note": "未来12个月无解禁"
+  },
+  "pending": {
+   "n": 0,
+   "items": [],
+   "src": "auto"
+  }
  },
  "600025": {
   "pledge": {
@@ -588,7 +986,8 @@
    "date": "2026-10-30",
    "cap": 2.83,
    "shares": 2650,
-   "note": "质押 0.14%，低于 5% 阈值"
+   "src": "auto",
+   "note": "质押 0.14%"
   },
   "guar": {
    "level": "ok",
@@ -611,16 +1010,38 @@
   },
   "note": "",
   "level": "ok",
-  "tags": []
+  "tags": [],
+  "goodwill": {
+   "ratio": null,
+   "level": "na",
+   "date": "2026-09-30",
+   "yi": 0.0,
+   "src": "auto",
+   "note": "最新报表无商誉项（通常为0）"
+  },
+  "lift": {
+   "n": 0,
+   "ratio": 0.0,
+   "level": "ok",
+   "next": null,
+   "src": "auto",
+   "note": "未来12个月无解禁"
+  },
+  "pending": {
+   "n": 0,
+   "items": [],
+   "src": "auto"
+  }
  },
  "601985": {
   "pledge": {
-   "ratio": 0,
+   "ratio": 0.0,
    "level": "ok",
    "date": "2020-11-20",
    "cap": 0.0,
    "shares": 0.01,
-   "note": "质押 0.00%，低于 5% 阈值"
+   "src": "auto",
+   "note": "质押 0.00%"
   },
   "guar": {
    "level": "ok",
@@ -643,7 +1064,28 @@
   },
   "note": "",
   "level": "ok",
-  "tags": []
+  "tags": [],
+  "goodwill": {
+   "ratio": 2.28,
+   "level": "ok",
+   "date": "2026-09-30",
+   "yi": 54.19,
+   "src": "auto",
+   "note": "商誉 54.19 亿，占净资产 2.28%"
+  },
+  "lift": {
+   "n": 0,
+   "ratio": 0.0,
+   "level": "ok",
+   "next": null,
+   "src": "auto",
+   "note": "未来12个月无解禁"
+  },
+  "pending": {
+   "n": 0,
+   "items": [],
+   "src": "auto"
+  }
  },
  "003816": {
   "pledge": {
@@ -652,7 +1094,8 @@
    "date": "2026-10-30",
    "cap": 22.76,
    "shares": 47511.9,
-   "note": "质押 1.21%，低于 5% 阈值"
+   "src": "auto",
+   "note": "质押 1.21%"
   },
   "guar": {
    "level": "ok",
@@ -675,7 +1118,28 @@
   },
   "note": "",
   "level": "ok",
-  "tags": []
+  "tags": [],
+  "goodwill": {
+   "ratio": 0.25,
+   "level": "ok",
+   "date": "2026-09-30",
+   "yi": 4.81,
+   "src": "auto",
+   "note": "商誉 4.81 亿，占净资产 0.25%"
+  },
+  "lift": {
+   "n": 0,
+   "ratio": 0.0,
+   "level": "ok",
+   "next": null,
+   "src": "auto",
+   "note": "未来12个月无解禁"
+  },
+  "pending": {
+   "n": 0,
+   "items": [],
+   "src": "auto"
+  }
  },
  "600795": {
   "pledge": {
@@ -684,7 +1148,8 @@
    "date": "2026-10-30",
    "cap": 1.97,
    "shares": 3677.45,
-   "note": "质押 0.21%，低于 5% 阈值"
+   "src": "auto",
+   "note": "质押 0.21%"
   },
   "guar": {
    "level": "warn",
@@ -709,7 +1174,28 @@
   "level": "warn",
   "tags": [
    "担保"
-  ]
+  ],
+  "goodwill": {
+   "ratio": 0.62,
+   "level": "ok",
+   "date": "2026-09-30",
+   "yi": 8.62,
+   "src": "auto",
+   "note": "商誉 8.62 亿，占净资产 0.62%"
+  },
+  "lift": {
+   "n": 0,
+   "ratio": 0.0,
+   "level": "ok",
+   "next": null,
+   "src": "auto",
+   "note": "未来12个月无解禁"
+  },
+  "pending": {
+   "n": 0,
+   "items": [],
+   "src": "auto"
+  }
  },
  "600011": {
   "pledge": {
@@ -718,7 +1204,8 @@
    "date": "2026-10-30",
    "cap": 0.57,
    "shares": 762.21,
-   "note": "质押 0.07%，低于 5% 阈值"
+   "src": "auto",
+   "note": "质押 0.07%"
   },
   "guar": {
    "level": "ok",
@@ -741,7 +1228,30 @@
   },
   "note": "商誉114.58亿，占净资产5.31%",
   "level": "warn",
-  "tags": []
+  "tags": [
+   "商誉5.3%"
+  ],
+  "goodwill": {
+   "ratio": 5.31,
+   "level": "warn",
+   "date": "2026-09-30",
+   "yi": 114.58,
+   "src": "auto",
+   "note": "商誉 114.58 亿，占净资产 5.31%（≥5% 预警）"
+  },
+  "lift": {
+   "n": 0,
+   "ratio": 0.0,
+   "level": "ok",
+   "next": null,
+   "src": "auto",
+   "note": "未来12个月无解禁"
+  },
+  "pending": {
+   "n": 0,
+   "items": [],
+   "src": "auto"
+  }
  },
  "600642": {
   "pledge": {
@@ -750,7 +1260,8 @@
    "date": "2026-10-30",
    "cap": 5.57,
    "shares": 6092.67,
-   "note": "质押 1.24%，低于 5% 阈值"
+   "src": "auto",
+   "note": "质押 1.24%"
   },
   "guar": {
    "level": "ok",
@@ -773,7 +1284,28 @@
   },
   "note": "",
   "level": "ok",
-  "tags": []
+  "tags": [],
+  "goodwill": {
+   "ratio": null,
+   "level": "na",
+   "date": "2026-09-30",
+   "yi": 0.0,
+   "src": "auto",
+   "note": "最新报表无商誉项（通常为0）"
+  },
+  "lift": {
+   "n": 0,
+   "ratio": 0.0,
+   "level": "ok",
+   "next": null,
+   "src": "auto",
+   "note": "未来12个月无解禁"
+  },
+  "pending": {
+   "n": 0,
+   "items": [],
+   "src": "auto"
+  }
  },
  "000429": {
   "pledge": {
@@ -782,7 +1314,8 @@
    "date": "2026-10-30",
    "cap": 1.61,
    "shares": 1167.66,
-   "note": "质押 0.67%，低于 5% 阈值"
+   "src": "auto",
+   "note": "质押 0.67%"
   },
   "guar": {
    "level": "ok",
@@ -805,7 +1338,28 @@
   },
   "note": "",
   "level": "ok",
-  "tags": []
+  "tags": [],
+  "goodwill": {
+   "ratio": null,
+   "level": "na",
+   "date": "2026-09-30",
+   "yi": 0.0,
+   "src": "auto",
+   "note": "最新报表无商誉项（通常为0）"
+  },
+  "lift": {
+   "n": 0,
+   "ratio": 0.0,
+   "level": "ok",
+   "next": null,
+   "src": "auto",
+   "note": "未来12个月无解禁"
+  },
+  "pending": {
+   "n": 0,
+   "items": [],
+   "src": "auto"
+  }
  },
  "600377": {
   "pledge": {
@@ -814,7 +1368,8 @@
    "date": "2026-10-30",
    "cap": 0.4,
    "shares": 290,
-   "note": "质押 0.08%，低于 5% 阈值"
+   "src": "auto",
+   "note": "质押 0.08%"
   },
   "guar": {
    "level": "ok",
@@ -837,7 +1392,28 @@
   },
   "note": "",
   "level": "ok",
-  "tags": []
+  "tags": [],
+  "goodwill": {
+   "ratio": null,
+   "level": "na",
+   "date": "2026-09-30",
+   "yi": 0.0,
+   "src": "auto",
+   "note": "最新报表无商誉项（通常为0）"
+  },
+  "lift": {
+   "n": 0,
+   "ratio": 0.0,
+   "level": "ok",
+   "next": null,
+   "src": "auto",
+   "note": "未来12个月无解禁"
+  },
+  "pending": {
+   "n": 0,
+   "items": [],
+   "src": "auto"
+  }
  },
  "600941": {
   "pledge": {
@@ -846,7 +1422,8 @@
    "date": "2026-10-30",
    "cap": 16.58,
    "shares": 1623.77,
-   "note": "质押 1.80%，低于 5% 阈值"
+   "src": "auto",
+   "note": "质押 1.80%"
   },
   "guar": {
    "level": "ok",
@@ -869,7 +1446,28 @@
   },
   "note": "",
   "level": "ok",
-  "tags": []
+  "tags": [],
+  "goodwill": {
+   "ratio": 0.27,
+   "level": "ok",
+   "date": "2026-09-30",
+   "yi": 37.69,
+   "src": "auto",
+   "note": "商誉 37.69 亿，占净资产 0.27%"
+  },
+  "lift": {
+   "n": 0,
+   "ratio": 0.0,
+   "level": "ok",
+   "next": null,
+   "src": "auto",
+   "note": "未来12个月无解禁"
+  },
+  "pending": {
+   "n": 0,
+   "items": [],
+   "src": "auto"
+  }
  },
  "601318": {
   "pledge": {
@@ -878,7 +1476,8 @@
    "date": "2026-10-30",
    "cap": 12.49,
    "shares": 2365.94,
-   "note": "质押 0.22%，低于 5% 阈值"
+   "src": "auto",
+   "note": "质押 0.22%"
   },
   "guar": {
    "level": "ok",
@@ -901,7 +1500,26 @@
   },
   "note": "",
   "level": "ok",
-  "tags": []
+  "tags": [],
+  "goodwill": {
+   "ratio": null,
+   "level": "na",
+   "src": "manual",
+   "note": "保险/券商口径，未取到（2026-10-31 人工核查）"
+  },
+  "lift": {
+   "n": 0,
+   "ratio": 0.0,
+   "level": "ok",
+   "next": null,
+   "src": "auto",
+   "note": "未来12个月无解禁"
+  },
+  "pending": {
+   "n": 0,
+   "items": [],
+   "src": "auto"
+  }
  },
  "601601": {
   "pledge": {
@@ -910,7 +1528,8 @@
    "date": "2026-10-30",
    "cap": 2.76,
    "shares": 900,
-   "note": "质押 0.13%，低于 5% 阈值"
+   "src": "auto",
+   "note": "质押 0.13%"
   },
   "guar": {
    "level": "ok",
@@ -933,7 +1552,26 @@
   },
   "note": "",
   "level": "ok",
-  "tags": []
+  "tags": [],
+  "goodwill": {
+   "ratio": null,
+   "level": "na",
+   "src": "manual",
+   "note": "保险/券商口径，未取到（2026-10-31 人工核查）"
+  },
+  "lift": {
+   "n": 0,
+   "ratio": 0.0,
+   "level": "ok",
+   "next": null,
+   "src": "auto",
+   "note": "未来12个月无解禁"
+  },
+  "pending": {
+   "n": 0,
+   "items": [],
+   "src": "auto"
+  }
  },
  "000783": {
   "pledge": {
@@ -942,7 +1580,8 @@
    "date": "2026-10-30",
    "cap": 30.56,
    "shares": 46166.61,
-   "note": "中登口径 8.35%，质押 4.62 亿股（市值 30.56 亿）。券商股权质押比例偏高属行业常见，但仍需注意"
+   "src": "auto",
+   "note": "质押 8.35%（≥5% 关注 / ≥15% 红灯）"
   },
   "guar": {
    "level": "ok",
@@ -967,7 +1606,26 @@
   "level": "warn",
   "tags": [
    "质押8.35%"
-  ]
+  ],
+  "goodwill": {
+   "ratio": null,
+   "level": "na",
+   "src": "manual",
+   "note": "保险/券商口径，未取到（2026-10-31 人工核查）"
+  },
+  "lift": {
+   "n": 0,
+   "ratio": 0.0,
+   "level": "ok",
+   "next": null,
+   "src": "auto",
+   "note": "未来12个月无解禁"
+  },
+  "pending": {
+   "n": 0,
+   "items": [],
+   "src": "auto"
+  }
  },
  "000333": {
   "pledge": {
@@ -976,7 +1634,8 @@
    "date": "2026-10-30",
    "cap": 29.11,
    "shares": 3263.94,
-   "note": "质押 0.47%，低于 5% 阈值"
+   "src": "auto",
+   "note": "质押 0.47%"
   },
   "guar": {
    "level": "warn",
@@ -1000,8 +1659,30 @@
   "note": "商誉311.47亿，占净资产13.18%",
   "level": "warn",
   "tags": [
+   "商誉13.2%",
    "担保"
-  ]
+  ],
+  "goodwill": {
+   "ratio": 13.18,
+   "level": "warn",
+   "date": "2026-09-30",
+   "yi": 311.47,
+   "src": "auto",
+   "note": "商誉 311.47 亿，占净资产 13.18%（≥5% 预警）"
+  },
+  "lift": {
+   "n": 0,
+   "ratio": 0.0,
+   "level": "ok",
+   "next": null,
+   "src": "auto",
+   "note": "未来12个月无解禁"
+  },
+  "pending": {
+   "n": 0,
+   "items": [],
+   "src": "auto"
+  }
  },
  "000651": {
   "pledge": {
@@ -1010,7 +1691,8 @@
    "date": "2026-10-30",
    "cap": 348.14,
    "shares": 90450.46,
-   "note": "中登口径 16.15%。真实情况更重：2026-07-16 公告（编号2026-033）特别风险提示「第一大股东珠海明骏及其一致行动人累计质押股份占其所持股份总数超过80%」，实际珠海明骏持股 859,566,532 股（15.35%）已 100% 全部质押。2026-03-23 明骏解除质押 1.117 亿股并「计划减持以偿还银行贷款」，期内实际减持 4,279.31 万股，剩余 6,890.97 万股因贷款协议要求被迫补充质押。链条：2020年416亿受让格力15%股权 → 贷款质押 → 2026年减持还贷（均价37.13元，低于46.17元成本）→ 未减持部分补质押。叠加 2026Q3 单季净利 39.96 亿、同比 −43.31%"
+   "src": "auto",
+   "note": "质押 16.15%（≥5% 关注 / ≥15% 红灯）"
   },
   "guar": {
    "level": "ok",
@@ -1035,7 +1717,28 @@
   "level": "red",
   "tags": [
    "质押16.15%"
-  ]
+  ],
+  "goodwill": {
+   "ratio": 0.86,
+   "level": "ok",
+   "date": "2026-09-30",
+   "yi": 13.24,
+   "src": "auto",
+   "note": "商誉 13.24 亿，占净资产 0.86%"
+  },
+  "lift": {
+   "n": 0,
+   "ratio": 0.0,
+   "level": "ok",
+   "next": null,
+   "src": "auto",
+   "note": "未来12个月无解禁"
+  },
+  "pending": {
+   "n": 0,
+   "items": [],
+   "src": "auto"
+  }
  },
  "600690": {
   "pledge": {
@@ -1044,7 +1747,8 @@
    "date": "2026-10-30",
    "cap": 2.43,
    "shares": 1174.03,
-   "note": "质押 0.19%，低于 5% 阈值"
+   "src": "auto",
+   "note": "质押 0.19%"
   },
   "guar": {
    "level": "warn",
@@ -1068,8 +1772,30 @@
   "note": "商誉260.13亿，占净资产20.03%（池内最高）",
   "level": "warn",
   "tags": [
+   "商誉20.0%",
    "担保"
-  ]
+  ],
+  "goodwill": {
+   "ratio": 20.03,
+   "level": "warn",
+   "date": "2026-09-30",
+   "yi": 260.13,
+   "src": "auto",
+   "note": "商誉 260.13 亿，占净资产 20.03%（≥5% 预警）"
+  },
+  "lift": {
+   "n": 0,
+   "ratio": 0.0,
+   "level": "ok",
+   "next": null,
+   "src": "auto",
+   "note": "未来12个月无解禁"
+  },
+  "pending": {
+   "n": 0,
+   "items": [],
+   "src": "auto"
+  }
  },
  "600519": {
   "pledge": {
@@ -1078,7 +1804,8 @@
    "date": "2026-10-30",
    "cap": 12.03,
    "shares": 86.4,
-   "note": "质押 0.07%，低于 5% 阈值"
+   "src": "auto",
+   "note": "质押 0.07%"
   },
   "guar": {
    "level": "ok",
@@ -1101,7 +1828,28 @@
   },
   "note": "",
   "level": "ok",
-  "tags": []
+  "tags": [],
+  "goodwill": {
+   "ratio": null,
+   "level": "na",
+   "date": "2026-09-30",
+   "yi": 0.0,
+   "src": "auto",
+   "note": "最新报表无商誉项（通常为0）"
+  },
+  "lift": {
+   "n": 0,
+   "ratio": 0.0,
+   "level": "ok",
+   "next": null,
+   "src": "auto",
+   "note": "未来12个月无解禁"
+  },
+  "pending": {
+   "n": 0,
+   "items": [],
+   "src": "auto"
+  }
  },
  "000858": {
   "pledge": {
@@ -1110,7 +1858,8 @@
    "date": "2026-10-30",
    "cap": 0.35,
    "shares": 46.32,
-   "note": "质押 0.01%，低于 5% 阈值"
+   "src": "auto",
+   "note": "质押 0.01%"
   },
   "guar": {
    "level": "ok",
@@ -1133,7 +1882,28 @@
   },
   "note": "2026-04-30 前期会计差错更正（2025年收入确认，其他流动资产调整+33.8亿）；叠加支付率129.8%、股价-37.2%",
   "level": "red",
-  "tags": []
+  "tags": [],
+  "goodwill": {
+   "ratio": 0.0,
+   "level": "ok",
+   "date": "2026-09-30",
+   "yi": 0.02,
+   "src": "auto",
+   "note": "商誉 0.02 亿，占净资产 0.00%"
+  },
+  "lift": {
+   "n": 0,
+   "ratio": 0.0,
+   "level": "ok",
+   "next": null,
+   "src": "auto",
+   "note": "未来12个月无解禁"
+  },
+  "pending": {
+   "n": 0,
+   "items": [],
+   "src": "auto"
+  }
  },
  "600809": {
   "pledge": {
@@ -1142,7 +1912,8 @@
    "date": "2026-10-30",
    "cap": 0.35,
    "shares": 28,
-   "note": "质押 0.02%，低于 5% 阈值"
+   "src": "auto",
+   "note": "质押 0.02%"
   },
   "guar": {
    "level": "ok",
@@ -1165,7 +1936,28 @@
   },
   "note": "近12月股东减持结果公告1条；股价近12月-33.7%",
   "level": "warn",
-  "tags": []
+  "tags": [],
+  "goodwill": {
+   "ratio": null,
+   "level": "na",
+   "date": "2026-09-30",
+   "yi": 0.0,
+   "src": "auto",
+   "note": "最新报表无商誉项（通常为0）"
+  },
+  "lift": {
+   "n": 0,
+   "ratio": 0.0,
+   "level": "ok",
+   "next": null,
+   "src": "auto",
+   "note": "未来12个月无解禁"
+  },
+  "pending": {
+   "n": 0,
+   "items": [],
+   "src": "auto"
+  }
  },
  "600887": {
   "pledge": {
@@ -1174,7 +1966,8 @@
    "date": "2026-10-30",
    "cap": 119.7,
    "shares": 39699.88,
-   "note": "中登口径 6.28%。股东呼和浩特投资（持股 8.51%，538,535,826 股）累计质押 190,270,000 股，占其持股 35.33%、占总股本 3.01%，质权人中信证券，用途「生产经营」；余下部分为其他股东质押"
+   "src": "auto",
+   "note": "质押 6.28%（≥5% 关注 / ≥15% 红灯）"
   },
   "guar": {
    "level": "warn",
@@ -1200,7 +1993,28 @@
   "tags": [
    "质押6.28%",
    "担保"
-  ]
+  ],
+  "goodwill": {
+   "ratio": 1.04,
+   "level": "ok",
+   "date": "2026-09-30",
+   "yi": 6.33,
+   "src": "auto",
+   "note": "商誉 6.33 亿，占净资产 1.04%"
+  },
+  "lift": {
+   "n": 0,
+   "ratio": 0.0,
+   "level": "ok",
+   "next": null,
+   "src": "auto",
+   "note": "未来12个月无解禁"
+  },
+  "pending": {
+   "n": 0,
+   "items": [],
+   "src": "auto"
+  }
  },
  "000895": {
   "pledge": {
@@ -1209,7 +2023,8 @@
    "date": "2026-10-30",
    "cap": 4.05,
    "shares": 1657.74,
-   "note": "质押 0.48%，低于 5% 阈值"
+   "src": "auto",
+   "note": "质押 0.48%"
   },
   "guar": {
    "level": "ok",
@@ -1232,7 +2047,28 @@
   },
   "note": "2026-10-10 收到 6 份行政处罚决定书：望奎双汇猪后鞧肉林可霉素抽检不合格；公司及相关董事、高管被漯河市市场监管局处罚；已公开道歉",
   "level": "red",
-  "tags": []
+  "tags": [],
+  "goodwill": {
+   "ratio": null,
+   "level": "na",
+   "date": "2026-09-30",
+   "yi": 0.0,
+   "src": "auto",
+   "note": "最新报表无商誉项（通常为0）"
+  },
+  "lift": {
+   "n": 0,
+   "ratio": 0.0,
+   "level": "ok",
+   "next": null,
+   "src": "auto",
+   "note": "未来12个月无解禁"
+  },
+  "pending": {
+   "n": 0,
+   "items": [],
+   "src": "auto"
+  }
  },
  "000538": {
   "pledge": {
@@ -1241,7 +2077,8 @@
    "date": "2026-10-30",
    "cap": 85.55,
    "shares": 15927.9,
-   "note": "中登口径 8.93%。股东新华都及一致行动人持股 449,624,311 股（25.20%），累计质押 98,170,000 股，占其持股 21.83%、占总股本 5.50%；另有「新华都集团-国信证券-25新华都EB01担保及信托财产专户」持有 5,600 万股，两笔相加即接近总质押率。属股东层面资金安排"
+   "src": "auto",
+   "note": "质押 8.93%（≥5% 关注 / ≥15% 红灯）"
   },
   "guar": {
    "level": "ok",
@@ -1266,7 +2103,28 @@
   "level": "warn",
   "tags": [
    "质押8.93%"
-  ]
+  ],
+  "goodwill": {
+   "ratio": 0.75,
+   "level": "ok",
+   "date": "2026-09-30",
+   "yi": 3.01,
+   "src": "auto",
+   "note": "商誉 3.01 亿，占净资产 0.75%"
+  },
+  "lift": {
+   "n": 0,
+   "ratio": 0.0,
+   "level": "ok",
+   "next": null,
+   "src": "auto",
+   "note": "未来12个月无解禁"
+  },
+  "pending": {
+   "n": 0,
+   "items": [],
+   "src": "auto"
+  }
  },
  "000423": {
   "pledge": {
@@ -1275,7 +2133,8 @@
    "date": "2026-10-30",
    "cap": 1.01,
    "shares": 210.52,
-   "note": "质押 0.33%，低于 5% 阈值"
+   "src": "auto",
+   "note": "质押 0.33%"
   },
   "guar": {
    "level": "ok",
@@ -1298,7 +2157,29 @@
   },
   "note": "",
   "level": "ok",
-  "tags": []
+  "tags": [],
+  "goodwill": {
+   "ratio": 0.25,
+   "level": "ok",
+   "date": "2026-09-30",
+   "yi": 0.24,
+   "src": "auto",
+   "note": "商誉 0.24 亿，占净资产 0.25%"
+  },
+  "lift": {
+   "n": 1,
+   "ratio": 0.0,
+   "cap": 0.0,
+   "level": "ok",
+   "next": "2027-07-19",
+   "src": "auto",
+   "note": "未来12个月解禁 1 笔，占总股本 0.00%，市值 0.00 亿，最近 2027-07-19"
+  },
+  "pending": {
+   "n": 0,
+   "items": [],
+   "src": "auto"
+  }
  },
  "600750": {
   "pledge": {
@@ -1307,7 +2188,8 @@
    "date": "2026-10-30",
    "cap": 5.78,
    "shares": 2569.1,
-   "note": "质押 4.04%，低于 5% 阈值"
+   "src": "auto",
+   "note": "质押 4.04%"
   },
   "guar": {
    "level": "ok",
@@ -1330,7 +2212,29 @@
   },
   "note": "",
   "level": "ok",
-  "tags": []
+  "tags": [],
+  "goodwill": {
+   "ratio": 1.16,
+   "level": "ok",
+   "date": "2026-09-30",
+   "yi": 0.52,
+   "src": "auto",
+   "note": "商誉 0.52 亿，占净资产 1.16%"
+  },
+  "lift": {
+   "n": 1,
+   "ratio": 0.0,
+   "cap": 0.0,
+   "level": "ok",
+   "next": "2027-06-07",
+   "src": "auto",
+   "note": "未来12个月解禁 1 笔，占总股本 0.00%，市值 0.00 亿，最近 2027-06-07"
+  },
+  "pending": {
+   "n": 0,
+   "items": [],
+   "src": "auto"
+  }
  },
  "000963": {
   "pledge": {
@@ -1339,7 +2243,8 @@
    "date": "2026-10-30",
    "cap": 38.55,
    "shares": 14481,
-   "note": "中登口径 8.26%。控股股东中国远大集团持股 730,938,141 股，质押 4,481 万股，占其持股 19.81%、占总股本 8.26%，质权人中金财富证券，用途「续贷质押」"
+   "src": "auto",
+   "note": "质押 8.26%（≥5% 关注 / ≥15% 红灯）"
   },
   "guar": {
    "level": "warn",
@@ -1364,9 +2269,31 @@
   "level": "warn",
   "tags": [
    "质押8.26%",
+   "商誉10.9%",
    "担保",
    "诉讼"
-  ]
+  ],
+  "goodwill": {
+   "ratio": 10.89,
+   "level": "warn",
+   "date": "2026-09-30",
+   "yi": 28.4,
+   "src": "auto",
+   "note": "商誉 28.40 亿，占净资产 10.89%（≥5% 预警）"
+  },
+  "lift": {
+   "n": 0,
+   "ratio": 0.0,
+   "level": "ok",
+   "next": null,
+   "src": "auto",
+   "note": "未来12个月无解禁"
+  },
+  "pending": {
+   "n": 0,
+   "items": [],
+   "src": "auto"
+  }
  },
  "002415": {
   "pledge": {
@@ -1375,7 +2302,8 @@
    "date": "2026-10-30",
    "cap": 151.03,
    "shares": 43713.15,
-   "note": "质押 4.77%，低于 5% 阈值"
+   "src": "auto",
+   "note": "质押 4.77%"
   },
   "guar": {
    "level": "ok",
@@ -1398,6 +2326,32 @@
   },
   "note": "",
   "level": "ok",
-  "tags": []
+  "tags": [],
+  "goodwill": {
+   "ratio": 0.33,
+   "level": "ok",
+   "date": "2026-09-30",
+   "yi": 3.07,
+   "src": "auto",
+   "note": "商誉 3.07 亿，占净资产 0.33%"
+  },
+  "lift": {
+   "n": 0,
+   "ratio": 0.0,
+   "level": "ok",
+   "next": null,
+   "src": "auto",
+   "note": "未来12个月无解禁"
+  },
+  "pending": {
+   "n": 0,
+   "items": [],
+   "src": "auto"
+  }
+ },
+ "_meta": {
+  "refreshed": "2026-11-01",
+  "mode": "auto+manual",
+  "errors": []
  }
 }
