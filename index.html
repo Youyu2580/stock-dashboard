@@ -173,8 +173,9 @@ function render() {
   if (FILTER === 'cheap') rows = rows.filter(r => r.pos60 != null && r.pos60 < 40);
   if (FILTER === 'expensive') rows = rows.filter(r => r.pos60 != null && r.pos60 > 80);
   if (FILTER === 'highdy') rows = rows.filter(r => r.dy != null && r.dy >= 5);
-  if (FILTER !== 'all') rows.sort((a, b) => (a.pos60 ?? 50) - (b.pos60 ?? 50));
-  else rows.sort((a, b) => (b.dy ?? 0) - (a.dy ?? 0));
+  const pin = r => (r.group === '底仓' ? 0 : 1);
+  if (FILTER !== 'all') rows.sort((a, b) => pin(a) - pin(b) || (a.pos60 ?? 50) - (b.pos60 ?? 50));
+  else rows.sort((a, b) => pin(a) - pin(b) || (b.dy ?? 0) - (a.dy ?? 0));
   if (!rows.length) { list.innerHTML = '<div class="empty">没有符合条件的股票</div>'; return; }
   list.innerHTML = rows.map(r => {
     const p = r.pos60;
