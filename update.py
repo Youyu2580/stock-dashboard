@@ -66,7 +66,13 @@ STOCKS = [
     ("000963", "华东医药", "sz", "医药", "订单", "新品放量×份额", "已核实"),
     # 科技
     ("002415", "海康威视", "sz", "科技", "订单", "订单×份额", "已核实"),
+    # ETF 底仓（两层仓之「底仓层」：死拿定投、不择时、只加不减、不做波段）
+    ("515180", "红利ETF易方达", "sh", "ETF底仓", "底仓", "中证红利·死拿定投", "已核实"),
+    ("159307", "红利低波100ETF博时", "sz", "ETF底仓", "底仓", "红利低波100(930955)·死拿定投", "已核实"),
 ]
+
+# 底仓 ETF：股息率走基金分红（腾讯月K 复权差值自动算），不走 dividends.json
+ETF_CODES = {"515180", "159307"}
 
 
 def fetch(url):
@@ -112,6 +118,29 @@ def fib(arr, days):
     }
 
 
+def etf_div12(sym):
+    """ETF 近12月每份分红：腾讯月K 不复权价 − 前复权价 的阶梯下降额之和。
+    原理：前复权把历史价减去其后所有分红，两价之差在该 bar 之后的分红发生时下降一步。"""
+    def kl(fq=""):
+        u = ("https://web.ifzq.gtimg.cn/appstock/app/fqkline/get"
+             "?param=%s,month,,,16,%s" % (sym, fq))
+        j = fetch(u)
+        return j["data"][sym].get("month") or j["data"][sym].get("qfqmonth")
+    raw, qfq = kl(), kl("qfq")
+    if not raw or not qfq or len(raw) != len(qfq):
+        return None
+    diffs = [float(r[2]) - float(q[2]) for r, q in zip(raw, qfq)]
+    months = [x[0][:7] for x in raw]
+    cutoff = (datetime.now(timezone(timedelta(hours=8))) - timedelta(days=365)).strftime("%Y-%m")
+    total = 0.0
+    for i in range(1, len(diffs)):
+        if months[i] >= cutoff:
+            step = diffs[i - 1] - diffs[i]
+            if step > 0.002:
+                total += step
+    return round(total, 4)
+
+
 def main():
     with open("dividends.json", encoding="utf-8") as f:
         divs = json.load(f)
@@ -151,7 +180,14 @@ def main():
         except Exception as e:
             print(f"{name} week err: {e}")
 
-        div12 = float(divs.get(code, 0))
+        if code in ETF_CODES:
+            try:
+                div12 = etf_div12(sym) or 0.0
+            except Exception as e:
+                print(f"{name} etf_div err: {e}")
+                div12 = 0.0
+        else:
+            div12 = float(divs.get(code, 0))
         dy = round(div12 / price * 100, 2) if price and price > 0 else None
         rows.append(
             {
