@@ -94,6 +94,7 @@ function fmt(n, d = 2) { return n == null ? '-' : Number(n).toFixed(d); }
 function driverTag(r) {
   const d = r.driver;
   if (!d) return '<span class="drv drv-note">未标注驱动</span>';
+  if (d === '底仓') return `<span class="drv drv-note">🏦 底仓·ETF</span>${r.driverNote ? `<span class="drv-note">${r.driverNote}</span>` : ''}`;
   const cls = d === '价差' ? 'drv-price' : 'drv-order';
   const note = r.driverNote ? `<span class="drv-note">${r.driverNote}</span>` : '';
   return `<span class="drv ${cls}">${d}驱动</span>${note}`;
