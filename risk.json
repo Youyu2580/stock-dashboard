@@ -2334,7 +2334,9 @@
   },
   "note": "",
   "level": "ok",
-  "tags": [],
+  "tags": [
+   "🔔1条待核"
+  ],
   "goodwill": {
    "ratio": 0.33,
    "level": "ok",
@@ -2352,13 +2354,20 @@
    "note": "未来12个月无解禁"
   },
   "pending": {
-   "n": 0,
-   "items": [],
+   "n": 1,
+   "items": [
+    {
+     "date": "2026-11-04",
+     "title": "海康威视:关于为子公司提供担保的进展公告",
+     "art": "AN202611031831375709",
+     "bucket": "guar"
+    }
+   ],
    "src": "auto"
   }
  },
  "_meta": {
-  "refreshed": "2026-11-03",
+  "refreshed": "2026-11-04",
   "mode": "auto+manual",
   "errors": []
  },
