@@ -23,7 +23,6 @@ STOCKS = [
     ("600036", "招商银行", "sh", "银行", "价差", "净息差+财富管理", "已核实"),
     ("601166", "兴业银行", "sh", "银行", "价差", "净息差", "已核实"),
     ("601998", "中信银行", "sh", "银行", "价差", "净息差", "已核实"),
-    ("601229", "上海银行", "sh", "银行", "价差", "净息差", "已核实"),
     # 商品周期（利润由商品价差决定，最需警惕）
     ("601088", "中国神华", "sh", "商品", "价差", "煤炭长协价与市场价", "已核实"),
     ("601225", "陕西煤业", "sh", "商品", "价差", "动力煤价", "已核实"),
@@ -145,16 +144,26 @@ def main():
     with open("dividends.json", encoding="utf-8") as f:
         divs = json.load(f)
 
+    # 上次结果：ETF 分红接口偶发 501/空，失败时沿用上次股息率，避免整列变 0
+    prev = {}
+    try:
+        with open("data.json", encoding="utf-8") as f:
+            prev = {x["code"]: x for x in json.load(f).get("stocks", [])}
+    except Exception:
+        prev = {}
+
     rows = []
     for code, name, mkt, group, driver, dnote, verified in STOCKS:
         sym = mkt + code
         price = None
         boll_d = boll_w = None
         f60 = f120 = None
+        ma250 = None
+        pos250 = None
         try:
             k = fetch(
                 "https://money.finance.sina.com.cn/quotes_service/api/json_v2.php/"
-                f"CN_MarketData.getKLineData?symbol={sym}&scale=240&ma=no&datalen=130"
+                f"CN_MarketData.getKLineData?symbol={sym}&scale=240&ma=no&datalen=320"
             )
             if k and len(k) >= 60:
                 for x in k:
@@ -166,6 +175,9 @@ def main():
                 boll_d = boll_pos(closes)
                 f60 = fib(k, 60)
                 f120 = fib(k, 120)
+                if len(closes) >= 250:
+                    ma250 = sum(closes[-250:]) / 250
+                    pos250 = fib(k, 250)["pos"]
         except Exception as e:
             print(f"{name} kline err: {e}")
         try:
@@ -189,6 +201,16 @@ def main():
         else:
             div12 = float(divs.get(code, 0))
         dy = round(div12 / price * 100, 2) if price and price > 0 else None
+        if code in ETF_CODES and (not dy) and prev.get(code, {}).get("dy"):
+            dy = prev[code]["dy"]
+            print(f"{name} etf_div 沿用上次 {dy}%")
+        dist250 = round((price / ma250 - 1) * 100, 2) if price and ma250 else None
+        # 三条件口径（用户 2026-11-18 定）：
+        #   低位 = 60日区间位置 < 40%；周 BOLL 在「中下 / 下轨以下」；股息率 ≥ 4.5%
+        # 注：股息率分位暂缺（暂无 10 年 RLY 序列），第三腿暂用股息率绝对值替代
+        low_pos = f60["pos"] < 40 if f60 else False
+        low_boll = boll_w in ("中下", "下轨以下")
+        dy_ok = dy is not None and dy >= 4.5
         rows.append(
             {
                 "name": name,
@@ -203,6 +225,13 @@ def main():
                 "bollW": boll_w or "-",
                 "pos60": f60["pos"] if f60 else None,
                 "pos120": f120["pos"] if f120 else None,
+                "pos250": pos250,
+                "ma250": round(ma250, 2) if ma250 else None,
+                "dist250": dist250,
+                "above250": (price >= ma250) if (price and ma250) else None,
+                "lowpos": low_pos,
+                "lowboll": low_boll,
+                "res": bool(low_pos and low_boll and dy_ok),
                 "f60": f60,
                 "f120": f120,
             }
