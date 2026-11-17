@@ -144,6 +144,19 @@ def main():
     with open("dividends.json", encoding="utf-8") as f:
         divs = json.load(f)
 
+    # 年度口径快照（由本地 stock-dive/pool_sync.py --apply 生成）：
+    # dividends.json 里的每股分红是人工维护的，TTM/年度/旧年份混在一起，
+    # 导致工农行这类一年派三次的被算成 5%，双汇漏中期被算成 3.14%。
+    # 有快照就优先用它（年度口径 = 最近完整财年中期+末期），没有才回落到 dividends.json。
+    fy, fy_asof = {}, None
+    try:
+        with open("dividends_fy.json", encoding="utf-8") as f:
+            _j = json.load(f) or {}
+            fy = _j.get("codes") or {}
+            fy_asof = _j.get("asof")
+    except Exception:
+        fy, fy_asof = {}, None
+
     # 上次结果：ETF 分红接口偶发 501/空，失败时沿用上次股息率，避免整列变 0
     prev = {}
     try:
@@ -192,18 +205,37 @@ def main():
         except Exception as e:
             print(f"{name} week err: {e}")
 
+        snap = fy.get(code) or {}
         if code in ETF_CODES:
             try:
                 div12 = etf_div12(sym) or 0.0
             except Exception as e:
                 print(f"{name} etf_div err: {e}")
                 div12 = 0.0
+            # ETF 不做年度口径（基金分红无财年概念），沿用原逻辑
+            dy = round(div12 / price * 100, 2) if price and price > 0 else None
+            dy_ttm = dy
         else:
             div12 = float(divs.get(code, 0))
-        dy = round(div12 / price * 100, 2) if price and price > 0 else None
+            dy_old = round(div12 / price * 100, 2) if price and price > 0 else None
+            # 快照只提供"每股年度分红"，价格用本脚本自己的（与 pos/fib 同源，口径一致）
+            fy_ps = snap.get("fy")
+            ttm_ps = snap.get("ttm")
+            if fy_ps and price:
+                dy = round(fy_ps / price * 100, 2)
+                dy_ttm = round(ttm_ps / price * 100, 2) if ttm_ps else None
+            elif snap.get("dy") is not None:
+                dy = snap["dy"]          # 兼容旧快照（里面自带 dy）
+                dy_ttm = snap.get("dyTTM")
+            else:
+                dy = dy_old
+                dy_ttm = None
         if code in ETF_CODES and (not dy) and prev.get(code, {}).get("dy"):
             dy = prev[code]["dy"]
             print(f"{name} etf_div 沿用上次 {dy}%")
+        dps = snap.get("fy") if code not in ETF_CODES else None
+        buy55 = round(dps / 0.055, 2) if dps else None
+        gap55 = round((price / buy55 - 1) * 100, 1) if (buy55 and price) else None
         dist250 = round((price / ma250 - 1) * 100, 2) if price and ma250 else None
         # 三条件口径（用户 2026-11-18 定）：
         #   低位 = 60日区间位置 < 40%；周 BOLL 在「中下 / 下轨以下」；股息率 ≥ 4.5%
@@ -221,6 +253,13 @@ def main():
                 "verified": verified,
                 "price": price,
                 "dy": dy,
+                "dyTTM": dy_ttm,
+                "divTrend": snap.get("trend"),
+                "divFlag": bool(snap.get("flag")),
+                "payout": snap.get("payout"),
+                "dps": dps,
+                "buy55": buy55,
+                "gap55": gap55,
                 "bollD": boll_d or "-",
                 "bollW": boll_w or "-",
                 "pos60": f60["pos"] if f60 else None,
@@ -241,6 +280,10 @@ def main():
     tz = timezone(timedelta(hours=8))
     payload = {
         "updated": datetime.now(tz).strftime("%Y-%m-%d %H:%M"),
+        "divAsof": fy_asof,
+        "schema": ("dy=最近完整财年(中期+末期)每股分红/现价（来自 dividends_fy.json 快照）；"
+                   "dyTTM=近12个月已实施除权合计/现价，仅供参考；buy55=每股分红/5.5% 第一笔买点；"
+                   "gap55=现价相对买点距离（负=已在买点下方）；divTrend/divFlag 同 stock-dive"),
         "stocks": rows,
     }
     with open("data.json", "w", encoding="utf-8") as f:
