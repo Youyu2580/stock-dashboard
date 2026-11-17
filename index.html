@@ -73,7 +73,10 @@ h1{font-size:18px;font-weight:600}
 </div>
 <div id="list"></div>
 <div class="note">
-  位置 = 当前价在近 60 个交易日高低区间中的百分位；越低越接近区间底部。<br>
+  位置 = 当前价在近 60 个交易日高低区间中的百分位；越低越接近区间底部。区间与均线用<b>不复权真实成交价</b>（网格挂单要按真实价，复权价是合成价）。<br>
+  <b>股息率 = 最近完整财年（中期+末期）每股分红 ÷ 现价</b>，是可核的年度口径；灰标 <b>TTM</b> 是近 12 个月实际除权金额，一年派三次的公司（如工行）会偏高，除权日刚落在窗口外的会偏低，两者差 ≥0.5pp 才显示。<br>
+  <b>分红下降 / 分红不可持续</b>：前者＝最近完整财年每股分红实质下滑（≥5% 且 ≥0.02 元）；后者＝分红率超过当年利润，靠留存或特别分红撑起来的股息率不能当常态。<br>
+  <b>买点 / 距买点</b>：买点＝每股年度分红 ÷ 5.5%（你的第一笔规则）；右侧百分比＝现价相对买点的距离，<b>负数（绿色）表示已经跌到买点下方</b>，正数表示还要再跌这么多。<br>
   <b>低位共振（三条件同时成立才亮标）：</b>①60 日位置 &lt; 40% ②周 BOLL 处于「中下 / 下轨以下」③股息率 ≥ 4.5%。<br>
   <b>年线 = 250 日均线：</b>「年线上方 / 下方」为现价与年线的关系，右侧是偏离幅度（+3.2% = 高出年线 3.2%）。年线之下的票只按股息率格子慢接，不按趋势加仓。<br>
   斐波那契三档 = 近期低点 + 区间 × 0.382 / 0.5 / 0.618，可作网格挂单位。<br>
@@ -178,7 +181,7 @@ function render() {
   if (FILTER === 'below250') rows = rows.filter(r => r.above250 === false);
   if (FILTER === 'cheap') rows = rows.filter(r => r.pos60 != null && r.pos60 < 40);
   if (FILTER === 'expensive') rows = rows.filter(r => r.pos60 != null && r.pos60 > 80);
-  if (FILTER === 'highdy') rows = rows.filter(r => r.dy != null && r.dy >= 5);
+  if (FILTER === 'highdy') rows = rows.filter(r => r.dy != null && r.dy >= 5 && !r.divFlag);
   const pin = r => (r.group === 'ETF底仓' ? 0 : 1);
   if (FILTER !== 'all') rows.sort((a, b) => pin(a) - pin(b) || (a.pos60 ?? 50) - (b.pos60 ?? 50));
   else rows.sort((a, b) => pin(a) - pin(b) || (b.dy ?? 0) - (a.dy ?? 0));
@@ -193,7 +196,8 @@ function render() {
         <div class="price">${fmt(r.price)}</div>
       </div>
       <div class="row2">
-        <span>股息率 <b>${r.dy == null ? '-' : r.dy + '%'}</b></span>
+        <span>股息率 <b>${r.dy == null ? '-' : r.dy + '%'}</b>${r.dyTTM != null && r.dy != null && Math.abs(r.dyTTM - r.dy) >= 0.5 ? `<span class="tag t-gray" title="近12个月已实际除权的分红合计÷现价；一年派三次的公司会偏高，除权日刚过窗口的会偏低">TTM ${r.dyTTM}%</span>` : ''}</span>
+        ${r.buy55 != null && !r.divFlag ? `<span title="每股分红 ÷ 5.5%，即你规则里的第一笔买点${r.divTrend === '最近一年下降' ? '；注意该股最近一年分红在降，买点需按新分红重算' : ''}">买点 <b>${fmt(r.buy55)}</b><span class="tag ${r.divTrend === '最近一年下降' ? 't-yellow' : (r.gap55 <= 0 ? 't-green' : 't-gray')}">${r.gap55 > 0 ? '+' : ''}${r.gap55}%</span></span>` : ''}
         <span>日BOLL <b>${r.bollD}</b></span>
         <span>周BOLL <b>${r.bollW}</b></span>
         <span>年线 <b style="color:${r.above250 === false ? 'var(--green)' : 'var(--red)'}">${r.above250 == null ? '-' : r.above250 ? '上方' : '下方'}</b><span class="tag ${r.above250 === false ? 't-green' : 't-red'}">${r.dist250 == null ? '' : (r.dist250 > 0 ? '+' : '') + r.dist250 + '%'}</span></span>
@@ -201,6 +205,7 @@ function render() {
       </div>
       <div class="row3">
         ${r.res ? '<span class="tag t-blue">低位共振</span>' : ''}
+        ${r.divFlag ? '<span class="tag t-red" title="分红率超过当年利润，可能动用留存收益或一次性特别分红，这种股息率不可持续">分红不可持续</span>' : (r.divTrend === '最近一年下降' ? '<span class="tag t-yellow" title="最近一个完整财年的每股分红实质下降（≥5% 且 ≥0.02 元）">分红下降</span>' : '')}
         ${driverTag(r)}
         ${verifyTag(r)}
         ${riskTag(r)}
@@ -215,7 +220,7 @@ function render() {
 function load() {
   fetch('data.json?t=' + Date.now()).then(r => r.json()).then(d => {
     DATA = d;
-    document.getElementById('updated').textContent = '更新于 ' + d.updated;
+    document.getElementById('updated').textContent = '更新于 ' + d.updated + (d.divAsof ? ' · 分红口径 ' + d.divAsof : '');
     return fetch('risk.json?t=' + Date.now())
       .then(r => (r.ok ? r.json() : {}))
       .catch(() => ({}));
