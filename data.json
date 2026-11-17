@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-18 05:05",
+ "updated": "2026-11-18 05:16",
  "divAsof": "2026-11-18",
  "schema": "dy=最近完整财年(中期+末期)每股分红/现价（来自 dividends_fy.json 快照）；dyTTM=近12个月已实施除权合计/现价，仅供参考；buy55=每股分红/5.5% 第一笔买点；gap55=现价相对买点距离（负=已在买点下方）；divTrend/divFlag 同 stock-dive",
  "stocks": [

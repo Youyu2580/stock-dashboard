@@ -1,6 +1,6 @@
 {
  "asof": "2026-11-18",
- "source": "eastmoney RPT_SHAREBONUS_DET（GitHub Actions 自动重算）",
+ "source": "eastmoney RPT_SHAREBONUS_DET（div_refresh.py 自动重算，年度口径）",
  "codes": {
   "601398": {
    "fy": 0.3103,
