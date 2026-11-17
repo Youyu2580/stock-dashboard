@@ -65,19 +65,23 @@ h1{font-size:18px;font-weight:600}
 </header>
 <div class="filters">
   <button data-f="all" class="active">全部</button>
+  <button data-f="res">低位共振</button>
   <button data-f="cheap">接近买点</button>
   <button data-f="expensive">接近卖点</button>
   <button data-f="highdy">高股息</button>
+  <button data-f="below250">年线下方</button>
 </div>
 <div id="list"></div>
 <div class="note">
   位置 = 当前价在近 60 个交易日高低区间中的百分位；越低越接近区间底部。<br>
+  <b>低位共振（三条件同时成立才亮标）：</b>①60 日位置 &lt; 40% ②周 BOLL 处于「中下 / 下轨以下」③股息率 ≥ 4.5%。<br>
+  <b>年线 = 250 日均线：</b>「年线上方 / 下方」为现价与年线的关系，右侧是偏离幅度（+3.2% = 高出年线 3.2%）。年线之下的票只按股息率格子慢接，不按趋势加仓。<br>
   斐波那契三档 = 近期低点 + 区间 × 0.382 / 0.5 / 0.618，可作网格挂单位。<br>
   <b>驱动 = 利润来源：</b>「订单驱动」利润由订单量/销量/份额决定；「价差驱动」利润由产品价差、净息差、运价决定（右侧小字为具体驱动因子）。<br>
   <b>价差 ≠ 必剔</b>——价差只标识利润来源，不等于要卖。真正要警惕的是<b>商品价差</b>（煤价/油价/运价/铝价），因为它的高股息建立在周期高位利润上。<br>
   <b>已核实</b> = 代码、名称、现价、股息率经三源交叉核对（东财分红表 + 腾讯行情 + 独立复算）；<b>未核实</b> = 尚未核对，不可据此决策。<br>
   <b>排雷 = 七类实查（点徽章展开全部依据）：</b>①商誉占净资产比 ②未来12月解禁 ③近12月减持公告 ④近12月问询/监管/处罚 ⑤<b>股权质押比例（中登全公司股东合计，每周五更新）</b> ⑥<b>对外担保（近12月公告，区分「对并表子公司」与「对参股/非并表主体」）</b> ⑦<b>诉讼仲裁 + 股份冻结</b>。<br>
-  <b>🔴有雷</b>＝已发生实质损害；<b>🟡关注</b>＝需知悉但不构成否决；<b>✅通过</b>＝七类均未发现。<br>
+  <b>🔴有雷</b>＝已发生实质损害；<b>🟡关注</b>＝需知悉但不构成否决；<b>✅通过</b>＝七类均未发现；<b>⚠️未核</b>＝该票还没有排雷记录（不等于通过）。<br>
   数据来自公开行情接口，仅供跟踪参考，不构成投资建议。
 </div>
 <div class="warn">
@@ -112,7 +116,7 @@ const lvCls = lv => lv === 'red' ? 'rk-red' : lv === 'warn' ? 'rk-warn' : 'rk-ok
 
 function riskTag(r) {
   const k = RISK[r.code];
-  if (!k) return `<span class="rk rk-ok">✅ 排雷通过</span>`;
+  if (!k) return `<span class="rk rk-warn" title="该标的还没有排雷记录，不等于通过">⚠️ 未核</span>`;
   const lv = k.level || 'ok';
   const label = lv === 'red' ? '🔴 有雷' : lv === 'warn' ? '🟡 关注' : '✅ 排雷通过';
   const cnt = (k.tags || []).length;
@@ -170,6 +174,8 @@ function render() {
   const list = document.getElementById('list');
   if (!DATA) { list.innerHTML = '<div class="empty">加载中…</div>'; return; }
   let rows = DATA.stocks.slice();
+  if (FILTER === 'res') rows = rows.filter(r => r.res === true);
+  if (FILTER === 'below250') rows = rows.filter(r => r.above250 === false);
   if (FILTER === 'cheap') rows = rows.filter(r => r.pos60 != null && r.pos60 < 40);
   if (FILTER === 'expensive') rows = rows.filter(r => r.pos60 != null && r.pos60 > 80);
   if (FILTER === 'highdy') rows = rows.filter(r => r.dy != null && r.dy >= 5);
@@ -190,9 +196,11 @@ function render() {
         <span>股息率 <b>${r.dy == null ? '-' : r.dy + '%'}</b></span>
         <span>日BOLL <b>${r.bollD}</b></span>
         <span>周BOLL <b>${r.bollW}</b></span>
+        <span>年线 <b style="color:${r.above250 === false ? 'var(--green)' : 'var(--red)'}">${r.above250 == null ? '-' : r.above250 ? '上方' : '下方'}</b><span class="tag ${r.above250 === false ? 't-green' : 't-red'}">${r.dist250 == null ? '' : (r.dist250 > 0 ? '+' : '') + r.dist250 + '%'}</span></span>
         <span>60日位置 <b style="color:${color(p)}">${p == null ? '-' : p + '%'}</b><span class="tag ${tagCls(p)}">${p == null ? '' : p < 30 ? '偏低' : p > 70 ? '偏高' : '中间'}</span></span>
       </div>
       <div class="row3">
+        ${r.res ? '<span class="tag t-blue">低位共振</span>' : ''}
         ${driverTag(r)}
         ${verifyTag(r)}
         ${riskTag(r)}
