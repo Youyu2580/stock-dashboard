@@ -19,6 +19,10 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Refresh dividends (annual basis, eastmoney)
+        continue-on-error: true
+        run: python div_refresh.py
+
       - name: Fetch market data
         run: python update.py
 
@@ -29,6 +33,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data.json risk.json
+          git add data.json risk.json dividends_fy.json
           git diff --staged --quiet || git commit -m "chore: update data & risk"
           git push
