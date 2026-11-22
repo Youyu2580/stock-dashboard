@@ -19,6 +19,15 @@ h1{font-size:18px;font-weight:600}
 .name{font-size:16px;font-weight:600}
 .group{font-size:11px;color:var(--muted);margin-left:6px}
 .price{font-size:17px;font-weight:600;font-variant-numeric:tabular-nums}
+.code{font-size:11px;color:var(--muted);margin-left:7px;letter-spacing:.4px;font-variant-numeric:tabular-nums}
+.chg{font-size:13px;font-weight:600;margin-left:8px;font-variant-numeric:tabular-nums}
+.c-up{color:var(--red)} .c-dn{color:var(--green)} .c-flat{color:var(--muted)}
+.vd{display:flex;align-items:center;gap:8px;margin-top:8px;font-size:12px;color:var(--muted);line-height:1.5}
+.vd b{padding:1px 8px;border-radius:9px;font-size:11px;font-weight:600;white-space:nowrap}
+.v-green{background:rgba(63,185,80,.15);color:var(--green)}
+.v-amber{background:rgba(210,153,34,.15);color:var(--yellow)}
+.v-red{background:rgba(248,81,73,.15);color:var(--red)}
+.v-gray{background:rgba(139,152,165,.15);color:var(--muted)}
 .row2{display:flex;gap:14px;margin-top:6px;font-size:13px;color:var(--muted);flex-wrap:wrap}
 .row2 b{color:var(--text);font-weight:600;font-variant-numeric:tabular-nums}
 .row3{display:flex;gap:6px;margin-top:7px;flex-wrap:wrap;align-items:center}
@@ -66,17 +75,24 @@ h1{font-size:18px;font-weight:600}
 <div class="filters">
   <button data-f="all" class="active">全部</button>
   <button data-f="res">低位共振</button>
-  <button data-f="cheap">接近买点</button>
-  <button data-f="expensive">接近卖点</button>
+  <button data-f="cheap">60日位置偏低</button>
+  <button data-f="expensive">60日位置偏高</button>
   <button data-f="highdy">高股息</button>
   <button data-f="below250">年线下方</button>
 </div>
 <div id="list"></div>
 <div class="note">
+  <b>结论档位（每张卡第一行）：</b>由 排雷 · 年线 · 买点距离 三件事合成，只回答「现在能不能动手」，不预测涨跌。<br>
+  ①<b>排雷</b>🔴有雷 → 「别追」（一票否决）；②<b>分红</b>不可持续 → 「别追」；<br>
+  ③<b>年线</b>下方 → 「观察」——只按股息率格子慢接，不按趋势加仓（不管离买点多近）；<br>
+  ④<b>年线上方</b>再看买点：已跌破买点 → <b>可买</b>；离买点 10% 以内 → <b>观察</b>；还差 10% 以上 → <b>别追</b>（追高）。<br>
+  　例外：已跌破买点、但 60 日位置已经 &gt;80%（短期涨到区间顶部）→ 先归 <b>观察</b>，等回落再动手；ETF 没有财年分红、算不出买点，只标 <b>底仓</b>。<br>
+  <b>当日涨跌</b> = 现价 ÷ 上一交易日收盘；红涨绿跌。<b>量比</b> = 当日成交量 ÷ 前 5 个交易日均量（收盘后口径），≥1.5 标「放量」。<br>
   位置 = 当前价在近 60 个交易日高低区间中的百分位；越低越接近区间底部。区间与均线用<b>不复权真实成交价</b>（网格挂单要按真实价，复权价是合成价）。<br>
   <b>股息率 = 最近完整财年（中期+末期）每股分红 ÷ 现价</b>，是可核的年度口径；灰标 <b>TTM</b> 是近 12 个月实际除权金额，一年派三次的公司（如工行）会偏高，除权日刚落在窗口外的会偏低，两者差 ≥0.5pp 才显示。<br>
   <b>分红下降 / 分红不可持续</b>：前者＝最近完整财年每股分红实质下滑（≥5% 且 ≥0.02 元）；后者＝分红率超过当年利润，靠留存或特别分红撑起来的股息率不能当常态。<br>
-  <b>买点 / 距买点</b>：买点＝每股年度分红 ÷ 5.5%（你的第一笔规则）；右侧百分比＝现价相对买点的距离，<b>负数（绿色）表示已经跌到买点下方</b>，正数表示还要再跌这么多。<br>
+  <b>买点 = 每股年度分红 ÷ 5.5%</b>（你的第一笔规则，保留）；右侧正数＝现价还要再跌这么多才到买点，负数（绿）＝已跌破买点。分红不可持续的票不显示买点（撑出来的股息率不能当基准）。<br>
+  <b>股息率不是决定项：</b>它只决定买点价位，不单独构成结论。档位优先级是 <b>排雷 → 年线 → 买点距离</b>：有雷先否决；年线下方只慢接不加仓；站上年线再看离买点多远。<br>
   <b>低位共振（三条件同时成立才亮标）：</b>①60 日位置 &lt; 40% ②周 BOLL 处于「中下 / 下轨以下」③股息率 ≥ 4.5%。<br>
   <b>年线 = 250 日均线：</b>「年线上方 / 下方」为现价与年线的关系，右侧是偏离幅度（+3.2% = 高出年线 3.2%）。年线之下的票只按股息率格子慢接，不按趋势加仓。<br>
   斐波那契三档 = 近期低点 + 区间 × 0.382 / 0.5 / 0.618，可作网格挂单位。<br>
@@ -173,6 +189,26 @@ function riskDetail(r) {
   return h;
 }
 
+// 结论档位：排雷 → 年线 → 买点距离（股息率不是决定项，只决定买点价位）
+function verdict(r) {
+  const k = RISK[r.code] || {};
+  const gap = r.gap55;
+  if (k.level === 'red') {
+    const t = (k.tags || []).slice(0, 2).join('、');
+    return ['别追', 'v-red', '排雷有雷' + (t ? '：' + t : '，点徽章看依据')];
+  }
+  if (r.group === 'ETF底仓') return ['底仓', 'v-gray', 'ETF 没有财年分红、算不出买点，只做定投/底仓'];
+  if (r.divFlag) return ['别追', 'v-red', '分红不可持续，这个股息率撑不住'];
+  if (r.above250 === false) return ['观察', 'v-amber', '年线下方，只按格子慢接，不按趋势加仓'];
+  if (gap == null) return ['观察', 'v-amber', '缺买点（未核实分红）'];
+  if (gap <= 0) {
+    if (r.pos60 != null && r.pos60 > 80) return ['观察', 'v-amber', '已在买点下方，但 60 日位置偏高，等回落'];
+    return ['可买', 'v-green', '年线上方，且已跌破买点'];
+  }
+  if (gap <= 10) return ['观察', 'v-amber', '年线上方，离买点不到 10%，可以等'];
+  return ['别追', 'v-red', '年线上方，但还差 ' + gap + '% 才到买点，别追'];
+}
+
 function render() {
   const list = document.getElementById('list');
   if (!DATA) { list.innerHTML = '<div class="empty">加载中…</div>'; return; }
@@ -190,14 +226,20 @@ function render() {
     const p = r.pos60;
     const barW = p == null ? 0 : Math.max(2, Math.min(100, p));
     const fib = r.f60 ? `<div class="fib"><span>网格：${fmt(r.f60.f382)} / ${fmt(r.f60.f500)} / ${fmt(r.f60.f618)}</span><span>区间 ${fmt(r.f60.lo)}–${fmt(r.f60.hi)}</span></div>` : '';
+    const vb = verdict(r);
+    const chgCls = r.chg == null || r.chg === 0 ? 'c-flat' : (r.chg > 0 ? 'c-up' : 'c-dn');
+    const chgTxt = r.chg == null ? '' : (r.chg > 0 ? '+' : '') + r.chg + '%';
+    const vrTxt = r.vr == null ? '' : `<span>量比 <b>${r.vr}</b>${r.vr >= 1.5 ? '<span class="tag t-yellow">放量</span>' : ''}</span>`;
     return `<div class="card">
       <div class="row1">
-        <div><span class="name">${r.name}</span><span class="group">${r.group || ''}</span></div>
-        <div class="price">${fmt(r.price)}</div>
+        <div><span class="name">${r.name}</span><span class="code">${r.code}</span><span class="group">${r.group || ''}</span></div>
+        <div class="price">${fmt(r.price)}<span class="chg ${chgCls}">${chgTxt}</span></div>
       </div>
+      <div class="vd"><b class="${vb[1]}">${vb[0]}</b><span>${vb[2]}</span></div>
       <div class="row2">
         <span>股息率 <b>${r.dy == null ? '-' : r.dy + '%'}</b>${r.dyTTM != null && r.dy != null && Math.abs(r.dyTTM - r.dy) >= 0.5 ? `<span class="tag t-gray" title="近12个月已实际除权的分红合计÷现价；一年派三次的公司会偏高，除权日刚过窗口的会偏低">TTM ${r.dyTTM}%</span>` : ''}</span>
-        ${r.buy55 != null && !r.divFlag ? `<span title="每股分红 ÷ 5.5%，即你规则里的第一笔买点${r.divTrend === '最近一年下降' ? '；注意该股最近一年分红在降，买点需按新分红重算' : ''}">买点 <b>${fmt(r.buy55)}</b><span class="tag ${r.divTrend === '最近一年下降' ? 't-yellow' : (r.gap55 <= 0 ? 't-green' : 't-gray')}">${r.gap55 > 0 ? '+' : ''}${r.gap55}%</span></span>` : ''}
+        ${r.buy55 != null && !r.divFlag ? `<span title="每股年度分红 ÷ 5.5%，你的第一笔买点${r.divTrend === '最近一年下降' ? '；注意该股最近一年分红在降，买点需按新分红重算' : ''}">买点 <b>${fmt(r.buy55)}</b><span class="tag ${r.divTrend === '最近一年下降' ? 't-yellow' : (r.gap55 <= 0 ? 't-green' : 't-gray')}">${r.gap55 > 0 ? '+' : ''}${r.gap55}%</span></span>` : ''}
+        ${vrTxt}
         <span>日BOLL <b>${r.bollD}</b></span>
         <span>周BOLL <b>${r.bollW}</b></span>
         <span>年线 <b style="color:${r.above250 === false ? 'var(--green)' : 'var(--red)'}">${r.above250 == null ? '-' : r.above250 ? '上方' : '下方'}</b><span class="tag ${r.above250 === false ? 't-green' : 't-red'}">${r.dist250 == null ? '' : (r.dist250 > 0 ? '+' : '') + r.dist250 + '%'}</span></span>
