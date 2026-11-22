@@ -167,6 +167,7 @@ def main():
     for code, name, mkt, group, driver, dnote, verified in STOCKS:
         sym = mkt + code
         price = None
+        chg = vr = None
         boll_d = boll_w = None
         f60 = f120 = None
         ma250 = None
@@ -181,8 +182,16 @@ def main():
                     x["high"] = float(x["high"])
                     x["low"] = float(x["low"])
                     x["close"] = float(x["close"])
+                    x["volume"] = float(x.get("volume") or 0)
                 closes = [x["close"] for x in k]
+                vols = [x["volume"] for x in k]
                 price = closes[-1]
+                # 当日涨跌 = 现价 / 上一交易日收盘；量比 = 当日量 / 前 5 日均量（收盘后口径）
+                if len(closes) > 1 and closes[-2]:
+                    chg = round((closes[-1] / closes[-2] - 1) * 100, 2)
+                base_v = sum(vols[-6:-1]) / 5 if len(vols) >= 6 else 0
+                if base_v > 0:
+                    vr = round(vols[-1] / base_v, 2)
                 boll_d = boll_pos(closes)
                 f60 = fib(k, 60)
                 f120 = fib(k, 120)
@@ -230,8 +239,11 @@ def main():
                 dy_ttm = None
         if code in ETF_CODES and (not dy) and prev.get(code, {}).get("dy"):
             dy = prev[code]["dy"]
+            dy_ttm = dy   # 分红接口 501 时 dy 会先算成 0，这里要连 TTM 一起回填，否则卡片会挂出「TTM 0%」
             print(f"{name} etf_div 沿用上次 {dy}%")
         dps = snap.get("fy") if code not in ETF_CODES else None
+        # 买点 = 每股年度分红 ÷ 5.5%（用户的第一笔规则，保留不动）。
+        # 但股息率不是决定项：结论档位的优先级是 排雷 → 年线 → 买点距离。
         buy55 = round(dps / 0.055, 2) if dps else None
         gap55 = round((price / buy55 - 1) * 100, 1) if (buy55 and price) else None
         dist250 = round((price / ma250 - 1) * 100, 2) if price and ma250 else None
@@ -250,6 +262,8 @@ def main():
                 "driverNote": dnote,
                 "verified": verified,
                 "price": price,
+                "chg": chg,
+                "vr": vr,
                 "dy": dy,
                 "dyTTM": dy_ttm,
                 "divTrend": snap.get("trend"),
@@ -280,8 +294,11 @@ def main():
         "updated": datetime.now(tz).strftime("%Y-%m-%d %H:%M"),
         "divAsof": fy_asof,
         "schema": ("dy=最近完整财年(中期+末期)每股分红/现价（来自 dividends_fy.json 快照）；"
-                   "dyTTM=近12个月已实施除权合计/现价，仅供参考；buy55=每股分红/5.5% 第一笔买点；"
-                   "gap55=现价相对买点距离（负=已在买点下方）；divTrend/divFlag 同 stock-dive"),
+                   "dyTTM=近12个月已实施除权合计/现价，仅供参考；"
+                   "buy55=每股年度分红/5.5%（第一笔买点，保留）；"
+                   "gap55=现价相对买点的距离（负=已跌破买点）；"
+                   "chg=当日涨跌（现价/上一交易日收盘）；vr=量比（当日量/前5日均量）；"
+                   "divTrend/divFlag 同 stock-dive"),
         "stocks": rows,
     }
     with open("data.json", "w", encoding="utf-8") as f:
